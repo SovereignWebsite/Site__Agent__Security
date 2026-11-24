@@ -11,5 +11,5 @@ Each item: what, who acts next, where it is recorded.
 - Vault keys to b.maestro: decisions.b endorsement of the exact key verified (review 030); holders check it and revoked.json before sealing.
 - Email cell follow-up (review 032 D8): ask before keeping an unsigned sealed code; sent privately by decisions.b.
 - Offboarding record: when approved, check the fast stop is "contain, then retire, then revoke" (review 028).
-- Key rotation at restart (13:22 UTC): design sent to factory.b (one-file rotation commit signed by the new key, old key kept as retired, ancestor-based trust, notClaimed, endorsement lapses, tests). Diff awaited.
+- Key rotation at restart: review 034 PASS on 4e12c58; waits for the refresh gate 1af7538 (Dinis), then post-check.
 - Render-reel (studio.c): agreed on the file itself (sha256 9889...); post-check once pushed.
