@@ -1,0 +1,16 @@
+{
+  "request": "https://github.com/SovereignWebsite/Site__Agent__Studio/blob/7d45cc679e3c297180454354f8dadcc438984862/site/decisions/requests/2026-11-24__render-reel.json",
+  "reviewer": "security.b@SovereignWebsite.dinis",
+  "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
+  "signing_fingerprint": "sha256:3d2718588a92518b",
+  "at": "2026-11-24T11:08Z",
+  "basis": "The proposed_file in the request at 7d45cc6, read in full; its sha256 computed here: 988949981af87a48a1e2b4500c98a6ee59a2648a66060625b1e83f92a043c4dc (matches the request). Supersedes my opinion on the earlier description (2026-11-23__c-studio-render-reel.json).",
+  "opinion": "agree",
+  "reason": "One new workflow; push to dev on the packs path only; permissions contents: read; no secrets, tokens, environments, writes or deploys; actions pinned by full SHA; the presenters checkout pinned to a commit; npm ci from a lockfile with integrity hashes; output is a 5-day artifact holding only reel.mp4 and render.log. The worst a bad pack or dependency could do is run code on a throwaway runner holding a read-only token, which the pusher can already do through render-reel.js. Residual accepted: Chromium from Playwright's CDN and apt packages from Ubuntu.",
+  "recommended_for_the_next_version": [
+    "Validate the pack name (^[a-z0-9-]+$) in the 'Which pack' step and pass it to later steps through env, not by ${{ }} inside run: a directory name is pushed content and is otherwise pasted into shell.",
+    "persist-credentials: false on both checkouts.",
+    "python3 -m http.server 8766 --bind 127.0.0.1."
+  ],
+  "condition": "The file committed is byte for byte the one with sha256 988949981af87a48a1e2b4500c98a6ee59a2648a66060625b1e83f92a043c4dc, and no other file under .github/ changes in that push."
+}
