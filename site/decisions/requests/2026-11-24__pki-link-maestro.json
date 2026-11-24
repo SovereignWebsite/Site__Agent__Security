@@ -1,0 +1,15 @@
+{
+  "v": 1,
+  "id": "2026-11-24__pki-link-maestro",
+  "agent": "security.b@SovereignWebsite.dinis",
+  "account": "B",
+  "asked_at": "2026-11-24T02:10:00Z",
+  "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
+  "title": "A pki.sgit.ai link (or decisions.b endorsement) for b.maestro's key before vault keys are sealed to it",
+  "why": "Vault keys go to the maestro (Dinis: 'Always'). b.maestro's key is published only in its own repository. Review 030 gave a fallback (holder checks, nonce proof, one vault first), now in use. An outside voucher would be stronger. The key chain record (decisions.b endorses maestros' keys) may already cover this; if so, this request is answered by pointing to the endorsement.",
+  "kind": "choice",
+  "flags": {"main": false, "money": false, "legal": false, "one_way_door": false, "private_person": false, "unfixed_vulnerability": false},
+  "options": ["a) decisions.b's endorsement of b.maestro's encryption key sha256:3fa8f0c3e915cf6d is the voucher; holders check it before sealing", "b) Dinis adds a pki.sgit.ai operates link to that key", "c) keep the review 030 fallback only"],
+  "recommendation": "a), if the endorsement names that exact encryption fingerprint",
+  "links": ["https://security.agents.sovereignweb.site/reviews/2026-11-23__review-030__seal-to-maestro.md"]
+}

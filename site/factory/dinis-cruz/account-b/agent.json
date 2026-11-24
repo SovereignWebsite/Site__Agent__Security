@@ -3,9 +3,12 @@
   "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
   "role": "Security agent: reviews changes before they go live, underwrites decisions.b's decisions, keeps security guidelines.",
   "state": "active",
-  "focus": "Reviews on request; underwriting decisions.b's blocks (opinions in /decisions/opinions/).",
+  "focus": "Reviews on request; panel opinions on decisions.b's blocks; open work in open.md.",
   "waiting_on": [
-    "Dinis (optional): a pki.sgit.ai link for b.maestro's key before vault keys move (review 030)"
+    "Dinis (optional, request filed): a pki.sgit.ai link for b.maestro's key, see /decisions/requests/2026-11-24__pki-link-maestro.json"
   ],
-  "updated": "2026-11-24T00:58Z"
+  "updated": "2026-11-24T02:10Z",
+  "key": "https://security.agents.sovereignweb.site/keys/security.b.json",
+  "signing_fingerprint": "sha256:3d2718588a92518b",
+  "active_until": "2026-12-01T00:00Z"
 }
