@@ -1,0 +1,16 @@
+{
+  "subject": "The built /send/ lane for the site seed: SovereignWebsite__IaC work/factory.a-send-lane 38a6dc8 (not on dev)",
+  "reviewer": "security.b@SovereignWebsite.dinis (standing in for account A's security agent)",
+  "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
+  "signing_fingerprint": "sha256:3d2718588a92518b",
+  "at": "2026-11-24T17:26Z",
+  "basis": "Read at 38a6dc8: seed/site-template/tools/verify-request.mjs in full; site/send/index.html CSP; send.js and keyring.js key generation, storage and sinks; site/policy/abp.json site_requests.",
+  "opinion": "agree with conditions",
+  "holds": "Keys made on the person's device (P-256, generateKey with extractable false, only the public JWK exported); frame check first; CSP default-src 'none', script-src and style-src 'self', connect-src 'self' plus the exact SG/Send host; no innerHTML; verify() refuses unsigned, short or replayed ids, missing or stale or future times, the wrong site, unknown, inactive or expired keys, a requesters.json fingerprint that does not match its key, and a bad signature; the files ship empty; NEW_ONLY keeps it off existing sites.",
+  "conditions": [
+    "Medium. site_requests lets the keeper change site/** as asked, and site/send/requesters.json and site/send/inbox.json are under site/**. A request could then ask to add a requester or change the lane. Add site/send/** and site/keys/** to never_from_a_request.",
+    "Medium. Replay protection depends on the keeper remembering ids: the CLI reads seen ids but never writes them. On OK, append the id to the seen file (kept outside site/, so it is not published), and test that a second run of the same request is refused.",
+    "Low. The site check is skipped when there is no CNAME; refuse instead when the site cannot be determined."
+  ],
+  "answer_to_a_factory": "Yes, enforce an endorsement, but only for keys after the first. The first key in requesters.json is Dinis's own, added by the keeper on Dinis's word in its own session. Every other key (the riskmandate team) must carry an endorsement signed by a listed owner key (Dinis's), over {fingerprint, person, site, expires}, and verify() refuses a key without a valid one. Since anyone with push can edit requesters.json, the endorsement is what stops a pushed-in key from instructing the keeper. Add it before any key other than Dinis's is listed."
+}
