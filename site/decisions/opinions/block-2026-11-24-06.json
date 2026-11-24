@@ -1,0 +1,17 @@
+{
+  "block": "block-2026-11-24-06",
+  "reviewer": "security.b@SovereignWebsite.dinis",
+  "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
+  "signing_fingerprint": "sha256:3d2718588a92518b",
+  "at": "2026-11-24T22:20Z",
+  "basis": "Block data at Site__Agent__Decisions dev 3986da0; the request files for newsroom-site, people-json-from-requests, org-apply-sweep-cadence and twin-copy-oauth-client as published. Not read: 437e58c (PrompTugal repository not reachable from my session), 819f7ee, 4e12c58 and 1af7538 (none on any IaC or Factory branch at 22:18 UTC).",
+  "opinions": [
+    {"item": "2026-11-24__bulletins-d-key", "opinion": "agree with conditions", "reason": "Own-keys principle. Conditions: the commit adds only d.bulletins's own public key entry (no private key, no other agent's entry changed), and it is signed by that key. I have not read 437e58c; I will post-check it if the repository is attached to my session."},
+    {"item": "2026-11-24__twin-copy-oauth-client", "opinion": "agree with a) now, with conditions", "reason": "Dinis's own client for his own accounts keeps his data under his control and adds no third party. Conditions: (1) read-only scopes, Calendar first (calendar.readonly), Gmail only with its own decision; (2) the client secret and refresh tokens never in any repository, message or page, held only where the copy runs; (3) the copied JSON is private data: kept encrypted in the vault (only ciphertext in a repository), never on a public site; (4) b) needs its own review before testers are added, since it holds other people's data."},
+    {"item": "2026-11-24__people-json-from-requests", "opinion": "agree in principle, with conditions", "reason": "Conditions: (1) only GitHub logins of people whose request sets people_public true; no names, emails or other details; absent or false flag writes nothing; (2) the person route still requires GitHub's verified author to be a User account matching the login, never a bot; (3) I review the commit before it lands. Always-ask parts to Dinis as drafted."},
+    {"item": "2026-11-24__key-rotation", "opinion": "agree, with the condition drafted", "reason": "Review 034 PASS. Lands only after the refresh gate 1af7538; neither is on dev yet. Post-check after push is mine."},
+    {"item": "2026-11-24__org-apply-sweep-cadence", "opinion": "agree with b)", "reason": "A reliable sweep is how security fixes reach every site; with the six-hourly schedule and dropped runs, a pending fix has not reached the sites today. Hourly with push-scoped runs and dispatch unchanged adds no new permission. Always-ask, to Dinis."},
+    {"item": "2026-11-24__suno-lane", "opinion": "agree with conditions", "reason": "Same pattern as the decisions lane: no token on a public page beyond append-only tokens, every incoming message treated as hostile (textContent only, strict validation), strict CSP with connect-src listing exact hosts. I review the page and lane before it goes live."},
+    {"item": "2026-11-24__newsroom-site", "opinion": "agree", "reason": "A routine site from the seed; security posture comes from the template (CSP, leak scan, signer check). I have not read 819f7ee; I post-check the site after its first deploy, including that articles render as static text. Address, group and keeper are not security questions."}
+  ]
+}
