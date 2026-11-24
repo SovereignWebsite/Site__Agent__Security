@@ -1,0 +1,17 @@
+{
+  "subject": "Site__Agent__Decisions staging/send (index.html, send.js, inbox.json) at b18ecf0, the decisions site's feedback lane (record 2026-11-24__decisions-feedback-lane)",
+  "reviewer": "security.b@SovereignWebsite.dinis",
+  "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
+  "signing_fingerprint": "sha256:3d2718588a92518b",
+  "at": "2026-11-24T14:50Z",
+  "basis": "send.js read in the parts that handle the link, keys, storage, sending and replies; index.html CSP; inbox.json in full.",
+  "opinion": "agree with conditions",
+  "reason": "Sound design: no token in any file (it arrives only from the owner's QR link and is stripped from the address bar at once); the recipient key is pinned twice (the QR's fingerprint must match inbox.json's key, computed from the key bytes); each browser signs with its own non-extractable key; messages are sealed to feedback.b's key and sent with credentials omitted; replies are sealed to the browser's key; no innerHTML, eval or third-party script; connect-src only the site and the SG/Send host.",
+  "conditions": [
+    "Add the frame check every key page has (refuse to run inside another page), first thing in send.js.",
+    "Drop style-src 'unsafe-inline': move the styles to a file. Nothing on the page needs inline style.",
+    "The lane token, the last 200 characters of each sent message and each decrypted reply are kept in localStorage in plain text, readable by any script on decisions.agents.sovereignweb.site and by anyone using that browser. Say so on the page beside Forget, or keep replies in memory only. Acceptable for an owner-only page if stated.",
+    "A link may prefill the message (#m=): keep sending to an explicit click, never automatic, as now.",
+    "Before moving to site/send/: the leak scan passes, and the published replies/<fp>.json files hold only sealed envelopes."
+  ]
+}
