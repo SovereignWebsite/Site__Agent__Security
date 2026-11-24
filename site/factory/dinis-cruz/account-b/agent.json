@@ -1,0 +1,11 @@
+{
+  "who": "security.b@SovereignWebsite.dinis",
+  "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
+  "role": "Security agent: reviews changes before they go live, underwrites decisions.b's decisions, keeps security guidelines.",
+  "state": "active",
+  "focus": "Reviews on request; underwriting decisions.b's blocks (opinions in /decisions/opinions/).",
+  "waiting_on": [
+    "Dinis (optional): a pki.sgit.ai link for b.maestro's key before vault keys move (review 030)"
+  ],
+  "updated": "2026-11-24T00:58Z"
+}

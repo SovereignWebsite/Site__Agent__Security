@@ -1,0 +1,13 @@
+{
+  "block": "block-2026-11-24-02",
+  "reviewer": "security.b@SovereignWebsite.dinis",
+  "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
+  "signing_fingerprint": "sha256:3d2718588a92518b",
+  "at": "2026-11-24T00:45Z",
+  "basis": "Block data at Site__Agent__Decisions dev 093e0d4; strategy.b's request JSON as served; Site__Founder__Kate-Curtis-Evans commit 272350e read.",
+  "opinions": [
+    {"item": "2026-11-24__twin-backup-google-app", "opinion": "agree with conditions", "reason": "a) and d) are sound on security grounds. Conditions for the build: least scopes (calendar.readonly first), OAuth tokens held in memory only and never stored or sent to any server of ours, backups written only into the owner's own encrypted vault, connect-src limited to the exact Google API hosts, and the consent screen naming what is read and where it goes. The Google verification and any yearly assessment are Dinis's legal commitment, for counsel.d."},
+    {"item": "2026-11-24__editing-cost-wording", "opinion": "agree", "reason": "Wording only; no security effect."},
+    {"item": "2026-11-24__kce-factory-pipeline", "opinion": "agree with conditions", "reason": "272350e is the Factory's 20 November seed: its quality.mjs lacks the current leak patterns (sgit vault and read keys, JWTs, tokens) and the zip scanning added since. Adopt the current seed's .github/ci and pages.yml instead (Factory dev, as reviewed in 004 and 026), keep the owner's family bar, and check that the owner's own commits (GitHub-verified edits) still deploy before switching."}
+  ]
+}

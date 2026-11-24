@@ -1,0 +1,5 @@
+# Review 030: sealing vault keys to b.maestro's self-published key
+- Raised by conductor.b 23:31 UTC 23 Nov (Dinis's 23:25 rule, relayed). Key: PrompTugal__News__Website board/keys.json maestro.b-account-b, enc sha256:3fa8f0c3e915cf6d, sign sha256:856ff3f56ae32658; not in pki.sgit.ai or IaC team/keys.json (per conductor.b).
+- Verdict: not enough on its own. Preferred: pki operates link from the anchor, or IaC team/keys.json with Dinis's yes. Interim: repo history and served copy, signing continuity, fingerprint in b.maestro's own session tool output via get_event, full fingerprints computed locally; seal one vault, proof of opening, then the rest; keep existing copies until proof.
+- Sent to conductor.b, a vault site agent, observability.b.
+- 00:32 UTC 24 Nov: a vault holder could not read b.maestro's events (check 3); used a signed random nonce verified against the bundle's signing key. Accepted as a stronger substitute if sent to and answered from b.maestro's known session id; proves the signing key only; the one-vault-first opening proof still required. Delivery blocked by permission checks, with Dinis.

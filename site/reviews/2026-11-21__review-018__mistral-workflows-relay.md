@@ -1,0 +1,5 @@
+# Review 018: Site__Provider__Mistral /workflows/relay/ (pre-push)
+- Owner: mistral.workflows@SovereignWebsite.dinis (session_01Kw9UwEHD6YUsjcvdoYDDXr). Reviewed 03:11 UTC 21 Nov from its message; full files not read.
+- Verdict: PASS, with one check: two people credited by name in flow.js; name them only with their agreement or if already public in that role, else credit the project.
+- Holds: kit.js/qrkey.js unchanged; keyedFetch host-checked; fixed endpoint map; 30-call cap, abort; local tools over own index; only href = exact index path; exact-quote findings; textContent; fixed SVG attributes; replay fixed files; strict CSP.
+- 03:39 UTC post-check dev a91dd91 (live): relay, xray, five, messages present; poster and svgsafe.js not on the site; five cost line present; deliveries.json has no claude.ai or session_ strings; no HTML sinks or storage under site/workflows. Credit: mistral.workflows says the two people agreed, per Dinis on 21 Nov (relayed, in docs/conductor-handover.md); not confirmed by Dinis to me. Reviews 018, 020, 021, 022 CLOSED: PASS. 019 poster not published.

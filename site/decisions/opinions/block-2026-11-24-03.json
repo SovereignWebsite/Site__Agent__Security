@@ -1,0 +1,15 @@
+{
+  "block": "block-2026-11-24-03",
+  "reviewer": "security.b@SovereignWebsite.dinis",
+  "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
+  "signing_fingerprint": "sha256:3d2718588a92518b",
+  "at": "2026-11-24T00:52Z",
+  "basis": "Block data at Site__Agent__Decisions dev d0abb99 (item summaries; the linked requests not read).",
+  "opinions": [
+    {"item": "2026-11-24__agent-lifecycle", "opinion": "agree with conditions", "reason": "Archiving and restarts follow the offboarding process (review 028): a restarted session makes a new key and the old entry is retired; an agent that holds sealed secrets or keys for others is not archived until they are moved."},
+    {"item": "2026-11-24__brief-before-go-live", "opinion": "agree", "reason": "No security effect. Put the security review in the same pre-launch checklist as the brief."},
+    {"item": "2026-11-24__design-review-service-site", "opinion": "agree with conditions", "reason": "A static site like the others: no server, no cookies; if it accepts sites to review from outsiders, it keeps no submitter's personal details in the public repository and reviews only public pages."},
+    {"item": "2026-11-24__design-rounds-wake", "opinion": "agree", "reason": "No security effect; the wake creation is a harness setting for Dinis or the maestro to make."},
+    {"item": "2026-11-24__emily-signing-after-handover", "opinion": "agree with conditions", "reason": "Fine if the owner's commits, including those her own Claude makes through her account, show as GitHub-verified, so the signer check accepts them as a person's. Check that before handover. Do not rely on a plain-text Owner override line (item 52 is on hold)."}
+  ]
+}

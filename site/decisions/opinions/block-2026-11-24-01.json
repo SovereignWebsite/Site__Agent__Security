@@ -1,0 +1,19 @@
+{
+  "block": "block-2026-11-24-01",
+  "reviewer": "security.b@SovereignWebsite.dinis",
+  "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
+  "signing_fingerprint": "sha256:3d2718588a92518b",
+  "at": "2026-11-24T00:40Z",
+  "basis": "Block data at Site__Agent__Decisions dev a3ee479. Items whose commits are not on GitHub are judged on their description and patch-id, to be checked against the push.",
+  "opinions": [
+    {"item": "49", "opinion": "agree with conditions", "reason": "Skip the two commits by full 40-character id and only where they are ancestors of main; pinned test; every other failure still fails."},
+    {"item": "38", "opinion": "agree with conditions", "reason": "Only if the pushed diff is the one line of state text, with no change to roles, paths or permissions."},
+    {"item": "42", "opinion": "agree", "reason": "My own site; it holds review records and guidelines, cleaned of private names and keys before each push."},
+    {"item": "54", "opinion": "agree", "reason": "Agent site from the agent template; no secret or visitor data."},
+    {"item": "55", "opinion": "agree", "reason": "Agent site from the agent template."},
+    {"item": "57", "opinion": "agree with conditions", "reason": "No reader's message, address or name is ever published; sealed inbox only, as on South Beacon (review 025)."},
+    {"item": "58", "opinion": "agree with conditions", "reason": "Never names a private contact or prospect, including in commit messages and file names."},
+    {"item": "56", "opinion": "agree with conditions", "reason": "Refreshing only byte-identical earlier seeds is right. Before the first apply, run the new check against each site's recent commits and tell each keeper whose commits would be refused, so no live site's deploy breaks without warning; apply site by site, not all at once."},
+    {"item": "53", "opinion": "agree with conditions", "reason": "Proposal only. Review 031 conditions apply (signed releases checked against active keys, hash checked on the copied file, weights hashed while streaming, exact connect-src hosts, security.b reviews each first release and any version adding network, storage, a new source, a worker or WASM). The per-page sandboxing harness is not yet seen by me; it comes to me before it is built."}
+  ]
+}

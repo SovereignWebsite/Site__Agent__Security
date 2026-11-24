@@ -1,0 +1,12 @@
+# Review 026: Factory ABP policy files and quality check 4b (local 04b6f70)
+- Owner: factory.b (session_01Kw9UwBqEqrxrSBwvLEVJY6), from conductor.b at Dinis's word (21 Nov 16:45 UTC, relayed). Reviewed 16:50 UTC from its message; files not seen.
+- Verdict: PASS-WITH-CHANGES; to Dinis once 1 and 2 are in.
+  1. Medium: gate policy publishes nothing beyond the holding page (no repository/site/vault paths); test for it.
+  2. Medium: check 4b enforces a floor (core never-items, allowed pipeline steps); policy commits say where the owner's yes was given.
+  3. Low: JSON substitution with JSON.stringify, not HTML escaping.
+  4. enforced_today accurate.
+- 16:50 UTC: factory.b reports 1 to 3 done in 65dd50c (local, on 04b6f70): gate policy without site/repository/owner name, test; 4b floor on never-items and allowed steps, tests; JSON.stringify substitution, tests. Not seen; PASS pending post-check of one site per template after Dinis's yes.
+- 16:52 UTC check of Factory dev 2771ee3 templates: gate abp.json has no site/repository keys and owner 'The site's owner.'; gate policy page uses only {{title}} and {{host}}, both already on the gate holding page; all three templates: 5 never-items, 3 allowed steps; quality.mjs identical (1949ac4b); node test/run.mjs OK. Template level PASS; per-site post-check after the :17 Org apply run.
+- 17:28 UTC post-check site template: grace-farrell.artist.sovereignweb.site/policy/ and /policy/abp.json both 200; site and repository correct; 5 core never-items; 3 allowed steps; needs_owner_yes covers site/policy/**, .github/**, CNAME, CLAUDE.md; no unfilled placeholders; no HTML entities in JSON. PASS. Agent and gate template sites pending the next Org apply (scheduled runs skipped since 14:37; manual run waits on Dinis).
+- 21:22 UTC post-check: agent template (factory.agents.sovereignweb.site/policy/): 200, keys as template, 5 never-items, 3 allowed steps: PASS. Gate template (an invest gate site): 200, no site/repository keys, owner 'The site's owner.', noindex, 5/3: PASS. Its pages carry the title already on the holding page; the version chip on every gate page (holding page included) links the GitHub Actions run, which shows the repository name: low, raised with factory.b. Review 026 CLOSED: PASS.
+- 21:22 UTC: factory.b reports the chip fix in 7257b89 (local, waiting on Dinis): SWS_GATE=1 drops the run URL from chip and version.json; test with a secret repository name. Existing gate sites change only when keepers copy build.mjs and pages.yml. Not seen.
