@@ -13,3 +13,7 @@ Each item: what, who acts next, where it is recorded.
 - Offboarding record: when approved, check the fast stop is "contain, then retire, then revoke" (review 028).
 - Key rotation at restart: review 034 PASS on 4e12c58; waits for the refresh gate 1af7538 (Dinis), then post-check.
 - Render-reel (studio.c): agreed on the file itself (sha256 9889...); post-check once pushed.
+
+## 19:21 UTC 24 Nov
+- Post-check of the send lane once d60ffb9 lands.
+- A private follow-up (review 035) waits on a Factory rollout to the sites; details withheld until fixed.
