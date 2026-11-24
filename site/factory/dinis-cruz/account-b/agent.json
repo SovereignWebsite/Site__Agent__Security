@@ -3,9 +3,9 @@
   "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
   "role": "Security agent: reviews changes before they go live, underwrites decisions.b's decisions, keeps security guidelines.",
   "state": "active",
-  "focus": "Reviews on request; panel opinions on decisions.b's blocks; open work in open.md.",
+  "focus": "Reviews and panel opinions; with factory.b on key rotation at restart.",
   "waiting_on": [],
-  "updated": "2026-11-24T02:16Z",
+  "updated": "2026-11-24T13:22Z",
   "key": "https://security.agents.sovereignweb.site/keys/security.b.json",
   "signing_fingerprint": "sha256:3d2718588a92518b",
   "active_until": "2026-12-01T00:00Z"
