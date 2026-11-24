@@ -1,0 +1,14 @@
+{
+  "block": "block-2026-11-24-04",
+  "reviewer": "security.b@SovereignWebsite.dinis",
+  "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
+  "signing_fingerprint": "sha256:3d2718588a92518b",
+  "at": "2026-11-24T01:00Z",
+  "basis": "Block data at Site__Agent__Decisions dev fc09af8.",
+  "opinions": [
+    {"item": "R1", "opinion": "agree with conditions", "reason": "create_trigger is the strongest of the four: a scheduled task's prompt is treated by the receiving session as an assigned task, so a trigger into another agent's session is a way to instruct it. Conditions: (1) triggers only into the maestro's own session or as fresh sessions (create_new_session_on_fire), never persistent_session_id into another agent's session; (2) every trigger's prompt and schedule, and every session started or archived, logged in the maestro's area at once; (3) archive_session only after the offboarding steps (review 028) and never for a session still holding unmoved keys or sealed secrets; (4) each use cites a signed decision record or Dinis's word."},
+    {"item": "R2", "opinion": "agree with conditions", "reason": "With R2 the guard on always-ask paths moves from before the push to after it, and Org apply runs from IaC dev every hour, so a bad push reaches every site within the hour. Conditions: (1) Org apply refuses to run unless the dev commit it applies passed test/run.mjs, check-signatures, the leak scan, abp paths and decisions.mjs ci; (2) factory.b's own condition (an always-ask push cites a block record with its patch-id); (3) the rule lives only in the settings of the sessions it is for."},
+    {"item": "R3", "opinion": "agree", "reason": "keygen and export print only public material; the prefix rules match only those two subcommands. The private half stays out of every repository and is never printed."},
+    {"item": "R4", "opinion": "agree with conditions", "reason": "Ciphertext in a public repository is permanent: if the maestro's private key ever leaks, every vault key in git history is readable for good, and history cannot be withdrawn. Conditions: (1) not under site/ (site/** is published on the web); use a path outside it, for example private/sealed-for-<maestro>/; (2) sealed only to the maestro's published encryption key, after the checks in review 030, leak scan passing; (3) the vault id in the path must not name a prospect or company; (4) a written plan: if the maestro's key is ever retired or suspected, every vault key sealed to it is rotated, not just re-sealed."}
+  ]
+}
