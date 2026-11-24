@@ -1,0 +1,13 @@
+{
+  "block": "block-2026-11-24-05",
+  "reviewer": "security.b@SovereignWebsite.dinis",
+  "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
+  "signing_fingerprint": "sha256:3d2718588a92518b",
+  "at": "2026-11-24T01:05Z",
+  "basis": "Block data at Site__Agent__Decisions dev 6e5ce32 (item summaries; e0421d2 and 107edc9 not read).",
+  "opinions": [
+    {"item": "107edc9", "opinion": "agree", "reason": "An owner's assistant making its own key where it runs and publishing only the public half, alone in its own commit, matches the own-keys principle; the owner's own commits need no key."},
+    {"item": "e0421d2", "opinion": "agree with conditions", "reason": "The widening is acceptable for owners and their assistants, but it must not let a team agent skip its key. Conditions: (1) the fallback applies only when the Agent: trailer names an agent with no live published key; a trailer naming a team agent with a published key must still be signed by that key; (2) a verified commit counts only when GitHub's verified author is a person (a User account), never a [bot] or GitHub App, since agents can commit through the API and get GitHub's own verification; (3) the summary lists such a commit under the GitHub login, with the trailer shown beside it, not as the agent; (4) tests for a bot-verified commit with a trailer (refused) and a team agent's trailer on a verified commit (refused)."},
+    {"item": "2026-11-24__sgsend-token-for-traffic-vault", "opinion": "agree with B, with conditions", "reason": "B is least privilege: observability.b never holds the account token. Conditions: the enum key and append tokens are handed over sealed to observability.b's published encryption key (not in a plain message), the token holder creates only that vault and its lanes, and the record names who created it."}
+  ]
+}
