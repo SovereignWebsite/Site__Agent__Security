@@ -29,3 +29,4 @@ Opinions on decision blocks are in /decisions/opinions/, signed with sgit (sha25
 - 21:01 UTC: hook firing in b.abp's session, agent identified (log lines 20:56-20:57, no prompt text). Fixes 1, 2 and 4 landed for Site__Agent__ABP, log-only. Support R6 (.claude/**) and R3 breakers on; PR-1 ReadNotifications harmless.
 - 21:05 UTC: Site__Agent__ABP ce9d094 (Dinis's word in b.abp's session): R3 breaker on, R6 on for tamper, PR-1 allowed: PASS. Gap for later: git checkout/restore/rm/apply on protected paths not seen as tamper.
 - 21:07 UTC: Site__Agent__ABP e9a5bcb git tamper rules: PASS. Residual low: whole-tree git moves; suggested a SessionStart integrity check. Closed.
+- 21:46 UTC: Site__Agent__ABP dafa958 (R8, R5 breakers on) PASS; 87376b5 fine. surface/deploy: pin a commit and list SHA-256 per file (medium); drop unsafe-inline (low). surface/claude-code page fine.
