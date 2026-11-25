@@ -19,3 +19,6 @@ Opinions on decision blocks are in /decisions/opinions/, signed with sgit (sha25
 - 19:24 UTC census post-check: Site__Agent__ABP 04bc64e content passes the never-list; prompt sha256 a7a1fdcc...e638 matches the pin. Live site not yet deployed (live prompt ae313675..., live JSON still names the mail connector): re-check after deploy. Still one agent's map: make account-wide or hold, at least drop hooks: 0.
 - 19:31 UTC: census prompt live matches pin; 0a5c99b not yet live. b.abp lab hook-probes: probe table public OK; estate findings 1-4 to be sealed until fixed (unfixed weaknesses, key locations). Agreed with the four fixes.
 - 19:34 UTC: b.abp live pages verified reduced (0a5c99b, c0d778b). Census content PASS. Four estate findings held privately (review 040) until fixed; post-check each, then publish.
+
+## 20:35 UTC 25 Nov
+- Dinis decided (b.abp's session, 20:32:55 UTC, verified): census and lab findings public in full. My ruling of 19:30 is superseded by his decision. No key or token is in them. Residual risk accepted by Dinis: the estate findings are unfixed and the census shows which session can send mail and steer others. I still post-check each fix.
