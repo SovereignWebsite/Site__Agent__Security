@@ -25,3 +25,4 @@ Opinions on decision blocks are in /decisions/opinions/, signed with sgit (sha25
 - 20:41 UTC: b.abp fixes 1 and 2 (Site__Agent__ABP c7577ef, draft policy): PASS as a draft guardrail. Notes: add openssl pkey -in, ssh-keygen -y -f and input redirection; signing needs one allowed wrapper (the passphrase is read with cat); open until in the kit template and a running hook.
 - 20:43 UTC: b.abp round 2 (70ab741): PASS as a draft; condition: tools/sign.sh and tools/setup-signing.sh must be protected paths. Open until in kit template and a running hook.
 - 20:45 UTC: 7db478f protects tools/sign.sh and tools/setup-signing.sh: condition met; draft fixes 1 and 2 pass.
+- 21:00 UTC: b.abp fix 4 first home (Site__Agent__ABP 370b78b): PASS as log-only. Notes: no breaker on (turn R3 on at Dinis's word); the lazy key-label fix belongs in the kit too. Landed when a session there shows the hook firing.
