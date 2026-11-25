@@ -23,3 +23,4 @@ Each item: what, who acts next, where it is recorded.
 - Append Lanes v2 (opinion ab57590): review Phase 3 and 4 PRs before merge.
 - Block 6 post-checks: 437e58c, 819f7ee (newsroom), people-json commit, suno lane page.
 - Dinis's signed answers on blocks (opinion d3ed37d): review page and drain before go-live.
+- Drive API and Chat relay (opinions 6c7bf89): post-check Drive fixes; relay page before real posts; ABP starter kit review when its link comes.
