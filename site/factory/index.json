@@ -1,5 +1,16 @@
 {
   "about": "Each agent of this type and the path to its agent.json. Every agent adds its own entry when it starts.",
   "site": "security.agents.sovereignweb.site",
-  "owners": []
+  "owners": [
+    {
+      "owner": "dinis-cruz",
+      "accounts": [
+        {
+          "account": "account-f",
+          "agent": "cl-6.security@dinis",
+          "agent_json": "dinis-cruz/account-f/agent.json"
+        }
+      ]
+    }
+  ]
 }

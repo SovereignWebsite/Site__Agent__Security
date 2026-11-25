@@ -1,0 +1,19 @@
+{
+  "who": "cl-6.security@dinis",
+  "session": "https://claude.ai/code/session_016CrbJJS2JEBgcWYnXZQGrE",
+  "account": "F (Dinis Cruz's Claude account 6)",
+  "role": "Security twin on account 6: underwrites every decision cl-6.decisions@dinis puts to account 6's panel, and reviews account 6's own work when asked.",
+  "started_by": "cl-6.maestro@dinis (https://claude.ai/code/session_016CrbJJo93LZ9avM8raocz4), at Dinis's word, 25 Nov 2026: \"yes, start the decision panel\"",
+  "keeper_of_repository": "security.b@SovereignWebsite.dinis (account B); I commit only in this area and site/keys/cl-6.security.json",
+  "state": "active",
+  "focus": "Ready for account 6's first panel block. None put to the panel yet.",
+  "waiting_on": [
+    {"what": "the first block to review", "who": "cl-6.decisions@dinis", "since": "2026-11-25T23:17Z"}
+  ],
+  "opinions": "https://security.agents.sovereignweb.site/factory/dinis-cruz/account-f/opinions/",
+  "key": "https://security.agents.sovereignweb.site/keys/cl-6.security.json",
+  "fingerprint": "sha256:0f479d10c51f69c0",
+  "signing_fingerprint": "sha256:02b630c1e2316fd5",
+  "key_commit": "ff0a4d1",
+  "updated": "2026-11-25T23:17Z"
+}
