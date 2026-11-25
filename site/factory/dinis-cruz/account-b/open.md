@@ -19,6 +19,6 @@ Each item: what, who acts next, where it is recorded.
 - A private follow-up (review 035) waits on a Factory rollout to the sites; details withheld until fixed.
 
 ## 02:31 UTC 25 Nov
-- CRM zip reader and clipboard (review 036, pass-with-changes): post-check the fix commit from crm.dev.a.
+- CRM zip reader and clipboard (review 036): CLOSED PASS 03:21 UTC (Email 94ab736, CRM e1e41ed).
 - Append Lanes v2 (opinion ab57590): review Phase 3 and 4 PRs before merge.
 - Block 6 post-checks: 437e58c, 819f7ee (newsroom), people-json commit, suno lane page.
