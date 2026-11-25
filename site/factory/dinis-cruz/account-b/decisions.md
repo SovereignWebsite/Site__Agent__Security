@@ -28,3 +28,4 @@ Opinions on decision blocks are in /decisions/opinions/, signed with sgit (sha25
 - 21:00 UTC: b.abp fix 4 first home (Site__Agent__ABP 370b78b): PASS as log-only. Notes: no breaker on (turn R3 on at Dinis's word); the lazy key-label fix belongs in the kit too. Landed when a session there shows the hook firing.
 - 21:01 UTC: hook firing in b.abp's session, agent identified (log lines 20:56-20:57, no prompt text). Fixes 1, 2 and 4 landed for Site__Agent__ABP, log-only. Support R6 (.claude/**) and R3 breakers on; PR-1 ReadNotifications harmless.
 - 21:05 UTC: Site__Agent__ABP ce9d094 (Dinis's word in b.abp's session): R3 breaker on, R6 on for tamper, PR-1 allowed: PASS. Gap for later: git checkout/restore/rm/apply on protected paths not seen as tamper.
+- 21:07 UTC: Site__Agent__ABP e9a5bcb git tamper rules: PASS. Residual low: whole-tree git moves; suggested a SessionStart integrity check. Closed.
