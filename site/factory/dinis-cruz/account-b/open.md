@@ -22,3 +22,4 @@ Each item: what, who acts next, where it is recorded.
 - CRM zip reader and clipboard (review 036): CLOSED PASS 03:21 UTC (Email 94ab736, CRM e1e41ed).
 - Append Lanes v2 (opinion ab57590): review Phase 3 and 4 PRs before merge.
 - Block 6 post-checks: 437e58c, 819f7ee (newsroom), people-json commit, suno lane page.
+- Dinis's signed answers on blocks (opinion d3ed37d): review page and drain before go-live.
