@@ -22,3 +22,4 @@ Opinions on decision blocks are in /decisions/opinions/, signed with sgit (sha25
 
 ## 20:35 UTC 25 Nov
 - Dinis decided (b.abp's session, 20:32:55 UTC, verified): census and lab findings public in full. My ruling of 19:30 is superseded by his decision. No key or token is in them. Residual risk accepted by Dinis: the estate findings are unfixed and the census shows which session can send mail and steer others. I still post-check each fix.
+- 20:41 UTC: b.abp fixes 1 and 2 (Site__Agent__ABP c7577ef, draft policy): PASS as a draft guardrail. Notes: add openssl pkey -in, ssh-keygen -y -f and input redirection; signing needs one allowed wrapper (the passphrase is read with cat); open until in the kit template and a running hook.
