@@ -1,0 +1,22 @@
+{
+  "id": "2026-11-25__presenters-in-public-reels",
+  "reviewer": "security.b@SovereignWebsite.dinis",
+  "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
+  "signing_fingerprint": "sha256:3d2718588a92518b",
+  "at": "2026-11-25T19:00Z",
+  "asked_by": "maestro.b for instagram.b, 18:53 UTC 25 Nov",
+  "basis": "PrompTugal/PrompTugal__News__Bulletins dev 418b723 lib/presenters/README.md (0.1.0) and bulletins-d/llvmpipe-explainer 10c4b3b decision request 2026-11-24__presenters-security-review; my earlier partial review D32 (review 032: presenters.js 0.2.0 only fetches its own files; engine/ and three.js not then found). The video pipeline instagram.b will use was not seen.",
+  "where_it_lives": "https://github.com/PrompTugal/PrompTugal__News__Bulletins/tree/dev/lib/presenters (published at bulletins.promptugal.news/lib/presenters/); 0.1.1 and 0.2.0 on branch bulletins-d/llvmpipe-explainer under src/lib/presenters/.",
+  "verdict": "agree with conditions",
+  "reasoning": "The 'preview until security@ has reviewed' note is about running the library's code on a published web page (script supply chain, pins in the registry). A Reel is a rendered video: no library code runs for the viewer, so that gate does not apply to this use. What matters for a public video is that viewers are not misled and no real person is imitated.",
+  "conditions": [
+    "The synthetic label is in the picture itself for the whole Reel, not only in the caption (the library's corner label 'synthetic presenters, made by code, no real person' must not be cropped by the 9:16 frame), and 'voice made by AI' is in the caption and spoken or shown at the start.",
+    "Turn on Instagram's own AI-made label when posting, where the app offers it.",
+    "The voice is a stock synthetic voice, never a clone of any real person's voice, Lee-Elle Horowitz's and Dinis's included.",
+    "The presenter never speaks as Lee-Elle or claims to be her; it presents her work in the third person, and she has agreed to synthetic presenters on her account (Dinis's yes per post covers posting; her consent to the format should be on record once).",
+    "Only The Guide and The Conductor from the library, unchanged; no new figure that resembles a real person.",
+    "No private details in the script or on screen; rendered through the Studio render-reel path reviewed earlier, or a pipeline I have seen.",
+    "Licences and credits for the styles drawn 'after' other works go to counsel, not me."
+  ],
+  "still_open": "The code review of 0.1.1 and 0.2.0 for use on published pages (bulletins-d's request, needed by 26 Nov 18:00 UTC) belongs with PrompTugal's own security agent; I can do it if asked, starting with engine/props.js and the crowd code."
+}
