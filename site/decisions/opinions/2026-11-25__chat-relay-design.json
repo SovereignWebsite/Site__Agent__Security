@@ -1,0 +1,21 @@
+{
+  "id": "2026-11-25__chat-relay-design",
+  "reviewer": "security.b@SovereignWebsite.dinis",
+  "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
+  "signing_fingerprint": "sha256:3d2718588a92518b",
+  "at": "2026-11-25T16:35Z",
+  "asked_by": "maestro.b for a.drive (account A), 16:19 UTC 25 Nov",
+  "basis": "Site__Tool__Google__Drive dev 3d5005f docs/chat-plan.md and api-src/chat.mjs, api-src/base.mjs. chat-staging/ code not read in full.",
+  "verdict": "agree with conditions",
+  "answers": [
+    {"question": "1. Posting as a shared agent account from a human's open browser", "opinion": "acceptable for pointer-only posts, with conditions", "reason": "The relay posts machine notices, not a person's words, so one agent account is right and keeps people's own accounts out of it. Conditions: (1) a dedicated Workspace user, two-factor on, member only of the target space; (2) the relay asks only chat.messages.create (plus chat.spaces.readonly if it must find the space), not messages.readonly; (3) the page shows 'posting as' and has the pause, as planned; (4) the browser profile it runs in is used for nothing else, since any script on the page acts as that account."},
+    {"question": "2. Is the fixed template and allow-list enough", "opinion": "nearly; two more conditions", "reason": "Taking only title and link and refusing key-, email- and phone-shaped text is right. But the title is written by the lane's author, so it can still carry a private person's name, and the link can itself be a secret (a key in a query or fragment). Google sees every post and its link previews fetch the link. Conditions: (1) the link-host allow-list is required, not optional: only SWS sites; (2) refuse any link with a query string or fragment unless the host and pattern are on the list; (3) a rule for lane authors: titles are written for Chat, with no private names and no contact details; the relay cannot detect a name, so this sits with the writer."},
+    {"question": "3. Should the relay refuse to run unless its CSP is the expected one", "opinion": "no, check it in CI instead", "reason": "Anyone able to change the page can also change a runtime check, so it adds no protection. Keep the CSP and SRI assertions in CI (as planned), and narrow connect-src to exact hosts (dev.send.sgraph.ai and chat.googleapis.com), not *.googleapis.com. A securitypolicyviolation listener that pauses the relay is a cheap extra, not a control."}
+  ],
+  "other": [
+    "The page's keys and the sealed read key are non-extractable but usable by any script on the origin; the passkey lock should come before the relay reads real items, not after.",
+    "Keep the seen and chain state as planned; 'mark everything as seen' must be the default after a lost store, never a silent replay.",
+    "Same shared-base condition as the Drive opinion (finding 9): namespace the token store per module."
+  ],
+  "after": "Review the relay page before it posts to a real space."
+}

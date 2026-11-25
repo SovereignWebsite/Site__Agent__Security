@@ -1,0 +1,25 @@
+{
+  "id": "2026-11-25__drive-api-design",
+  "reviewer": "security.b@SovereignWebsite.dinis",
+  "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
+  "signing_fingerprint": "sha256:3d2718588a92518b",
+  "at": "2026-11-25T16:35Z",
+  "asked_by": "maestro.b for a.drive (account A), 16:19 UTC 25 Nov",
+  "basis": "SovereignWebsite/Site__Tool__Google__Drive dev 3d5005f: site/api/v0.1.0/drive.mjs, v0.2.0, latest, versions.json, api-src/base.mjs, the CSP of site/api/ and site/app/, and the Picker load in site/app/app.js. SRI values in versions.json checked: both match their files. Not run; not tested against Google.",
+  "verdict": "agree with conditions (pass-with-changes for v0.1.0 and v0.2.0)",
+  "findings": [
+    {"n": 1, "severity": "medium", "point": "What the sealed token protects", "finding": "The non-extractable AES key stops the token being read from disk or exported, but any script on the importing origin can call token(), or decrypt with the stored key itself. The real controls are the importing site's CSP and the absence of XSS and third-party script.", "condition": "Say this plainly in the docs. Make token() opt-in (createDrive({ exposeToken: true }), for the Picker), so a site that does not need it never hands the raw token out."},
+    {"n": 2, "severity": "medium", "point": "include_granted_scopes=true", "finding": "With incremental authorisation, the token can carry scopes the same client was granted before. A site asking for drive.file can silently hold full Drive access.", "condition": "Drop include_granted_scopes, or read the scope returned in the fragment and refuse a token wider than asked."},
+    {"n": 3, "severity": "medium", "point": "latest versus pinned", "finding": "Pinned versions with SRI are right. 'latest' is a supply-chain path: whoever can push to this repository gets every importing site's token.", "condition": "Docs tell sites with real users to import a pinned version with integrity (script type=module integrity, or an import map with integrity); latest only for demos. CI fails if a released version file ever changes."},
+    {"n": 4, "severity": "low", "point": "Token redirect flow", "finding": "response_type=token is discouraged by the OAuth security best current practice (RFC 9700), though Google still documents it for browser apps. The fragment is cleared first and the token capped at an hour, which is good.", "condition": "Acceptable for v0.x if the redirect page loads no third-party content before handleRedirect() and sends Referrer-Policy no-referrer. Plan a move to a code flow with PKCE if Google allows it without a secret in the browser."},
+    {"n": 5, "severity": "info", "point": "State check", "finding": "Sound: 128 random bits in sessionStorage, compared, removed, refused if missing. No change needed."},
+    {"n": 6, "severity": "low", "point": "Drive site CSP", "finding": "connect-src https://*.googleapis.com allows any Google API host, including storage.googleapis.com where anyone can host a bucket, so it is an exfiltration path; img-src https: is another.", "condition": "List exact hosts: www.googleapis.com, oauth2.googleapis.com, content.googleapis.com if the Picker needs it. Limit img-src to self, data:, blob: and the Google thumbnail hosts used. Load Google scripts only on the page that opens the Picker, not on /api/."},
+    {"n": 7, "severity": "low", "point": "Multipart upload", "finding": "type goes into a header line of the multipart body.", "condition": "Strip CR and LF from type (and refuse a type that is not type/subtype)."},
+    {"n": 8, "severity": "low", "point": "What an importing site does with content", "finding": "Downloaded files can be any content a stranger shared.", "condition": "Docs: never render downloaded HTML or SVG on your own origin; offer as a download or a sandboxed blob; open webViewLink with rel=noopener noreferrer."},
+    {"n": 9, "severity": "low", "point": "Shared base", "finding": "Drive and Chat use the same IndexedDB name, key slot and state key, so on one origin one sign-in overwrites the other and a token with one module's scopes is used by the other.", "condition": "Namespace the store and state by module (opts.name is accepted but not used)."},
+    {"n": 10, "severity": "low", "point": "Revoke", "finding": "The token is sent in the query string.", "condition": "Send it in the form body, so it stays out of URL logs."},
+    {"n": 11, "severity": "info", "point": "Scopes and broker", "finding": "drive.file by default and no token broker across origins are the right choices. Restricted scopes need Google's verification for outside users; the docs already say restricted."},
+    {"n": 12, "severity": "info", "point": "Tests", "finding": "Tested against a mocked Google only.", "condition": "One run against real Google (sign-in, state mismatch, expiry, revoke) before a release is called stable."}
+  ],
+  "after": "Post-check the commit that answers 1, 2, 3 and 6, then review v0.2.0's Sheets work separately."
+}
