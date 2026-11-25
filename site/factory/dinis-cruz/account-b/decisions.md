@@ -30,3 +30,4 @@ Opinions on decision blocks are in /decisions/opinions/, signed with sgit (sha25
 - 21:05 UTC: Site__Agent__ABP ce9d094 (Dinis's word in b.abp's session): R3 breaker on, R6 on for tamper, PR-1 allowed: PASS. Gap for later: git checkout/restore/rm/apply on protected paths not seen as tamper.
 - 21:07 UTC: Site__Agent__ABP e9a5bcb git tamper rules: PASS. Residual low: whole-tree git moves; suggested a SessionStart integrity check. Closed.
 - 21:46 UTC: Site__Agent__ABP dafa958 (R8, R5 breakers on) PASS; 87376b5 fine. surface/deploy: pin a commit and list SHA-256 per file (medium); drop unsafe-inline (low). surface/claude-code page fine.
+- 21:48 UTC: deploy page pinned to dafa958, five SHA-256 values match (computed from git), sha256sum -c stops on mismatch; script-src none on three pages: PASS, closed.
