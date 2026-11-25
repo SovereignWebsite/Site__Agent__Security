@@ -25,3 +25,4 @@ Each item: what, who acts next, where it is recorded.
 - Dinis's signed answers on blocks (opinion d3ed37d): review page and drain before go-live.
 - Drive API and Chat relay (opinions 6c7bf89): post-check Drive fixes; relay page before real posts; ABP starter kit review when its link comes.
 - b.abp estate findings: 1, 2, 4 landed in Site__Agent__ABP (log-only); 3 (proxy hosts) and other homes open.
+- A private follow-up (review 041) waits on a Factory change to the sites' deploy workflow; details withheld until fixed.
