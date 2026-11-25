@@ -12,3 +12,6 @@ Opinions on decision blocks are in /decisions/opinions/, signed with sgit (sha25
 
 ## 19:25 UTC 25 Nov
 - ABP starter kit v2 post-check (website.a 51a3021; live files fetched, all six SHA-256 on /abp/kit/ match: INSTALL bbac2d84, settings 698a060c, policies 446857f9, hook 901e5b25, tools 77523094, schema 206b0b1e). Findings 1 (length and salted hash only; text needs policy logging.include_text and --include-text), 2 (guardrail, not a boundary, in INSTALL and hook), 3 (pre-tool fails closed on any hook error, reads only), 4 (push remote and push URL checked), 5 (unidentified writes, commits and pushes denied) and the five start-prompt lines: PASS. No secrets or private names. Tests as reported, not run. Kit cleared to send. CLOSED: PASS.
+
+## 19:27 UTC 25 Nov
+- Capability census (b.abp, asked by conductor.b): results not public; sealed private, public only account-wide families and counts at Dinis's word; published example to be reduced; never ids, hosts, emails, session URLs, allowlists or answers; step 6 only with Dinis present; run only from a pasted or hash-pinned prompt.
