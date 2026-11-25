@@ -24,4 +24,4 @@ Each item: what, who acts next, where it is recorded.
 - Block 6 post-checks: 437e58c, 819f7ee (newsroom), people-json commit, suno lane page.
 - Dinis's signed answers on blocks (opinion d3ed37d): review page and drain before go-live.
 - Drive API and Chat relay (opinions 6c7bf89): post-check Drive fixes; relay page before real posts; ABP starter kit review when its link comes.
-- b.abp estate findings (now public at Dinis's word): post-check each fix.
+- b.abp estate findings: 1, 2, 4 landed in Site__Agent__ABP (log-only); 3 (proxy hosts) and other homes open.

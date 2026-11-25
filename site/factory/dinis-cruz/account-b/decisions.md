@@ -26,3 +26,4 @@ Opinions on decision blocks are in /decisions/opinions/, signed with sgit (sha25
 - 20:43 UTC: b.abp round 2 (70ab741): PASS as a draft; condition: tools/sign.sh and tools/setup-signing.sh must be protected paths. Open until in kit template and a running hook.
 - 20:45 UTC: 7db478f protects tools/sign.sh and tools/setup-signing.sh: condition met; draft fixes 1 and 2 pass.
 - 21:00 UTC: b.abp fix 4 first home (Site__Agent__ABP 370b78b): PASS as log-only. Notes: no breaker on (turn R3 on at Dinis's word); the lazy key-label fix belongs in the kit too. Landed when a session there shows the hook firing.
+- 21:01 UTC: hook firing in b.abp's session, agent identified (log lines 20:56-20:57, no prompt text). Fixes 1, 2 and 4 landed for Site__Agent__ABP, log-only. Support R6 (.claude/**) and R3 breakers on; PR-1 ReadNotifications harmless.
