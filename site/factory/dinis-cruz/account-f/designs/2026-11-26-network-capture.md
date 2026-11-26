@@ -4,6 +4,8 @@ cl-6.security@dinis, 2026-11-26T16:45Z. Draft for agreement with cl-6.accountant
 
 **Revision 2026-11-26T16:46Z:** cl-6.accountant's ledger side folded in (schema, where rows live, measuring before rollout: Site__Agent__Accountant proposals/2026-11-26-network-ledger-side.md); cl-6.telemetry confirmed it captures no hosts today (it holds get_session only, and the proxy's own log is outside what a session can read). Agreed with cl-6.accountant; cl-6.abp's answer awaited.
 
+**Revision 2026-11-26T16:46Z:** cl-6.accountant priced the draft (by message; figures kept out of this public file). Reading whole transcripts costs about as much as running the team, so layer C is cut to tool calls only, as below.
+
 **Dinis's ask** (cl-6.maestro's session, about 16:50 UTC, recorded in Site__Agent__Maestro__Claude__6 decisions/2026-11-26-network-capture.md): "capture all network requests made by the agents here ... so that we can track them and detect ABPs (since we should have super strick ABP for Network access for all agents here)".
 
 ## What the platform gives us today (checked in this session)
@@ -37,7 +39,9 @@ The strictest control we have is the egress proxy, and it holds even if an agent
 |---|---|---|---|
 | A. Hook log (cl-6.abp's kit): every WebFetch and WebSearch URL, every Bash command that names a URL or host (curl, wget, git, pip, npm, node or python with a URL) | intended requests, with agent, tool and time | yes (it runs in the session); it is a guardrail and a first record | near zero |
 | B. Local logging proxy: a small CONNECT logger in front of the platform proxy (HTTPS_PROXY points at it; it forwards to the platform proxy) recording host, port, time, bytes and the upstream answer (allowed or 403) | every proxied request from any tool, including code the hook cannot read | yes (the agent could unset it), but then layer C shows the gap | near zero; one small process per session |
-| C. Transcript audit: one auditor reads each session's tool calls and results from the platform (list_events) and keeps only agent, time, tool, host and allowed or refused | everything the session did, including [agent-proxy] refusals | **no**: the platform holds it | the real cost (see below) |
+| C. Transcript audit: one auditor reads each session's **tool calls only** (list_events, assistant events; never results) and keeps only agent, time, tool and host | every request the session asked for, from WebFetch URLs to hosts named in commands | **no**: the platform holds it | the real cost (see below) |
+
+Refusals and unknown hosts come from layer B, not from reading results, so layer C never reads a tool's output (cheaper, and it never sees what a page or command returned). A session whose tool calls show network use but which has no layer B log is itself a breach, so tampering with B shows up in C.
 
 Layer C is the one Dinis asked for ("somewhere agents cannot edit"). It is the narrow form of P1 I described in block-2026-11-26-05: read only tool calls and results, keep only hosts and outcomes, copy no text, store nothing raw. It still reads transcripts in memory, so it needs Dinis's own yes, and the auditor should be one agent (cl-6.telemetry, or a dedicated cl-6.netaudit), not every agent.
 
@@ -55,8 +59,10 @@ Destinations behind NO_PROXY (Anthropic, MCP, package registries) do not pass th
 ## Cost (for cl-6.accountant to price)
 
 - Layers 1, A and B: no model tokens; a few kilobytes of log per session per day.
+- Moving agents off the unrestricted environment can block work, and a blocked agent still costs its wakes: each agent's run report lists the hosts it needed **before** it is moved.
+- Audit cost is booked as its own line in the ledger, not as any agent's spend.
 - cl-6.accountant measures tokens per wake with and without capture on one agent for a day before any rollout, and reports the method.
-- Layer C: tokens to page through transcripts. A busy session's page of 40 events was over 500,000 characters today, because tool results are included. Keep it cheap by reading only new events since the last audit, filtered to tool calls and results, once or twice a day; run it on a small model; budget it as its own line. cl-6.accountant to estimate from cl-6.telemetry's event counts.
+- Layer C: reading whole transcripts, results included, would cost about as much as running the whole team, so it is ruled out. Reading tool calls only, once a day, only events since the last audit, in small batches in fresh contexts so the auditor's own context never grows, on the smallest model Dinis allows, is a small fraction of that; the exact figure waits for the one-day measurement. If the platform can export its egress log, layer C is dropped entirely.
 
 ## Order
 
