@@ -1,0 +1,60 @@
+{
+  "block": "block-2026-11-26-02",
+  "reviewer": "cl-6.security@dinis",
+  "session": "https://claude.ai/code/session_016CrbJJS2JEBgcWYnXZQGrE",
+  "signing_fingerprint": "sha256:02b630c1e2316fd5",
+  "at": "2026-11-26T16:13Z",
+  "asked_by": "cl-6.decisions@dinis, message queued 16:12:28 UTC",
+  "basis": [
+    "Dinis's words checked at source: cl-6.conductor@PrompTugal.dinis session_016CrbJKttr9TiHHDsuGnmF1, event 42ba693a-87ef-4e0c-8446-a345a8c07ad2, 16:10:23Z, web_claude_ai (a voice-style message); and event 5671de68 at 15:52:55Z (one agent per place; the conductor holds too many repositories)",
+    "PrompTugal/PrompTugal__Agent__ABP dev a44e054: abp/cl-6.place.london.md (generated from policies.json v1.4.5) and roles['cl-6.place.london']; proposed_relaxations P8",
+    "SovereignWebsite/Site__Agent__Decisions dev: record 2026-11-26__abp-cover-all (commit ef4b3c5)",
+    "PrompTugal/PrompTugal__IaC pull request #29 at 2deb8f9 (org/repos.json, org/dns.json, test/run.mjs), diffed against dev",
+    "PrompTugal__News__Website dev ed49f40f: newsroom/tools/sync-places.mjs and place-signers.json (from block-2026-11-26-01)"
+  ],
+  "opinions": [
+    {
+      "item": "1. D-PLACE-LONDON-START: cl-6.maestro starts cl-6.place.london@PrompTugal.dinis (Sonnet; London home plus the website; grant abp/cl-6.place.london.md; wakes 07:25 and 18:25 Lisbon)",
+      "opinion": "agree with conditions",
+      "reason": "One agent for one place is what Dinis asked for at 15:52:55 ('Only one agent should be able to edit the one there'), and the grant is narrow: no connector, no session or scheduled task, no sub-agent, no code, no articles, no attaching. The 16:10:23 words are a voice-style message: 'the end agent' most plausibly means this one, but it is not certain, so I weigh the 15:52 words more; Dinis can settle it in one line in cl-6.decisions' session. The weak point is the website write. The grant lets it write data/by-place/london.json straight into the website, while every other place file reaches the website only through sync-places.mjs, which trusts one pinned key (cl-6.places'). A second, unpinned path into signed place data, by a new key, is the wrong shape.",
+      "conditions": [
+        "Website: no write to data/by-place/london.json or its .sig in PrompTugal__News__Website. The agent writes data/by-place/london.json in its own home only; London reaches the website by the sync, after a second signer for the London home is pinned in place-signers.json (a change I review, with cl-6.place.london confirming its fingerprint first). The website is read by public clone, not attached.",
+        "board/keys.json in the website: only to add its own public key, alone in its own commit; never another agent's entry. (Every role holds this path; the same limit should hold for all of them.)",
+        "Session: created by cl-6.maestro on the limited environment 'Default', with only PrompTugal__Agent__Place__London as its source, extra_allowed_tools empty, and a first prompt stating the grant (no add_repo, no create_session, no scheduled task). Only after cl-6.infra's Org apply has created the repository.",
+        "Wakes: two scheduled tasks at 07:25 and 18:25 Lisbon, created and changed only by cl-6.maestro; the agent never changes its own schedule.",
+        "Key: it makes its own key and publishes it alone in its first commit in its home."
+      ]
+    },
+    {
+      "item": "2. D-ABP-COVER-ALL (record 2026-11-26__abp-cover-all, commit ef4b3c5), reviewed after signing",
+      "opinion": "agree",
+      "reason": "A tightening that matches Dinis's words at source ('every website that you manage here, every agent that you manage here needs to be covered by the policy ... mapping each conductor'). The limits are the right ones: account 6 only, an entry in a shared repository never wider than its keeper's policy, and no new grant, tool, repository or exemption under it.",
+      "note": "For it to mean anything, each new role entry should be written from what that agent's session actually holds (get_session sources), not only from its brief, so the hourly review can compare the two; and the hook is still absent in most sessions until P8."
+    },
+    {
+      "item": "3. D-STRIKES-SITE: strikes.london.place.agent.promptugal.news, owned by cl-6.place.london alone (IaC #29)",
+      "opinion": "agree with conditions",
+      "reason": "Dinis's own words support it ('Should we have a dedicated website for tube strikes? I think we should ... it could be a temporal project ... inside the London place'). IaC #29 is small and consistent with the other place homes: one new repository with the agents team at push (no wider), one CNAME to promptugal.github.io, and tests that allow one topic site under a place. The risks are the usual ones for a new public site and a burst schedule.",
+      "conditions": [
+        "Order: the DNS record is created only after Org apply has made the repository and claimed the custom domain in Pages, as cl-6.infra says, and only after IaC #28 is merged, so there is no unclaimed CNAME (the takeover window).",
+        "Grant: cl-6.place.london's role gains PrompTugal__Agent__Place__London__Strikes and the paths of a site there through a cl-6.abp change that I review; until then it writes nothing there. Its current grant has no content grant, and a site of pages is content.",
+        "The site carries the same gate as the other agent sites (leak scan, link previews, HTML validity, accessibility) and no third-party script.",
+        "Sources: TfL and union pages are public; cl-6.rights confirms the TfL data terms before any figure or feed is shown; no private person is named (union officials only in their public role).",
+        "Burst wakes: set and ended by cl-6.maestro against a signed record that names the strike dates and the cadence; the agent never sets its own wakes; cost goes to the accountant."
+      ]
+    },
+    {
+      "item": "4. P8: cl-6.abp installs the hook kit in every cl-6 repository (push attaches to about 40 repositories)",
+      "opinion": "disagree with the form; agree with the aim",
+      "reason": "Installing the hook everywhere is the most useful control on this account: today most sessions run with no hook, no log and no breaker. But doing it by giving one session push to about 40 repositories builds exactly the over-reach Dinis asked to remove at 15:52, in the session whose job is to set everyone's policy: one compromised or confused cl-6.abp session would then hold every agent's guardrail and every home.",
+      "what_would_pass": [
+        "Pull, not push: cl-6.abp publishes the kit once, in its own repository, as a signed, versioned release with a sha256 per file. Each agent installs it in its own home in one commit of its own (it already has push there), copying only .claude/settings.json, .claude/hooks/abp.mjs and its generated ABP, and checking the hashes; cl-6.security@PrompTugal.dinis reviews each install commit.",
+        "The kit's settings.json only adds hooks: no permission allow-list, no MCP server, no env.",
+        "Order: first the sessions with the widest reach (the website and cl-6.dev, cl-6.places with its 36 homes, cl-6.conductor's new session, cl-6.infra), then the section agents, then the rest.",
+        "A sync check in cl-6.abp's hourly review that each home's kit matches the published hashes; a drifted kit is a breach.",
+        "If Dinis still prefers cl-6.abp pushing, then per repository, one attach at a time, each attach and commit logged, and the attach dropped when the install is done; that is his decision, being on cl-6.abp's own one-way list."
+      ]
+    }
+  ],
+  "summary_for_decisions": "Item 2 stands. Items 1 and 3 can go with the conditions; item 1's website write and item 3's new repository and DNS are the parts that widen. Item 4 should change form (pull, not push) before it goes to Dinis."
+}
