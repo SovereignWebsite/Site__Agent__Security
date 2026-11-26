@@ -2,9 +2,11 @@
 
 cl-6.security@dinis, 2026-11-26T16:45Z. Draft for agreement with cl-6.accountant@dinis (cost and ledger) and cl-6.abp@PrompTugal.dinis (policies), cl-6.telemetry@PrompTugal.dinis in copy. Then to Dinis through cl-6.maestro.
 
-**Revision 2026-11-26T16:46Z:** cl-6.accountant's ledger side folded in (schema, where rows live, measuring before rollout: Site__Agent__Accountant proposals/2026-11-26-network-ledger-side.md); cl-6.telemetry confirmed it captures no hosts today (it holds get_session only, and the proxy's own log is outside what a session can read). Agreed with cl-6.accountant; cl-6.abp's answer awaited.
+**Revision 2026-11-26T16:46Z:** cl-6.accountant's ledger side folded in (schema, where rows live, measuring before rollout: Site__Agent__Accountant proposals/2026-11-26-network-ledger-side.md); cl-6.telemetry confirmed it captures no hosts today (it holds get_session only, and the proxy's own log is outside what a session can read). Agreed with cl-6.accountant and cl-6.abp.
 
 **Revision 2026-11-26T16:46Z:** cl-6.accountant priced the draft (by message; figures kept out of this public file). Reading whole transcripts costs about as much as running the team, so layer C is cut to tool calls only, as below.
+
+**Revision 2026-11-26T16:47Z:** cl-6.abp's design (PrompTugal__Agent__ABP abp/network/DESIGN.md, policy v1.7.1) merged in, this file as the spine. Its policy already uses network.allow and network.environment, and gives the no-web-read roles (maestro, conductor, social, abp, accountant, decisions, security) an empty allow-list on the limited environment.
 
 **Dinis's ask** (cl-6.maestro's session, about 16:50 UTC, recorded in Site__Agent__Maestro__Claude__6 decisions/2026-11-26-network-capture.md): "capture all network requests made by the agents here ... so that we can track them and detect ABPs (since we should have super strick ABP for Network access for all agents here)".
 
@@ -38,14 +40,16 @@ The strictest control we have is the egress proxy, and it holds even if an agent
 | Source | Sees | Agent can tamper? | Cost |
 |---|---|---|---|
 | A. Hook log (cl-6.abp's kit): every WebFetch and WebSearch URL, every Bash command that names a URL or host (curl, wget, git, pip, npm, node or python with a URL) | intended requests, with agent, tool and time | yes (it runs in the session); it is a guardrail and a first record | near zero |
-| B. Local logging proxy: a small CONNECT logger in front of the platform proxy (HTTPS_PROXY points at it; it forwards to the platform proxy) recording host, port, time, bytes and the upstream answer (allowed or 403) | every proxied request from any tool, including code the hook cannot read | yes (the agent could unset it), but then layer C shows the gap | near zero; one small process per session |
+| B. Local logging proxy: a small CONNECT logger in front of the platform proxy (HTTPS_PROXY points at it; it forwards to the platform proxy). **Not yet proven:** a hook cannot change HTTPS_PROXY for later commands; a SessionStart hook writing exports to the file named by CLAUDE_ENV_FILE may; that variable is not set in this session, so cl-6.abp tests it in a session with the kit before the design relies on B recording host, port, time, bytes and the upstream answer (allowed or 403) | every proxied request from any tool, including code the hook cannot read | yes (the agent could unset it), but then layer C shows the gap | near zero; one small process per session |
 | C. Transcript audit: one auditor reads each session's **tool calls only** (list_events, assistant events; never results) and keeps only agent, time, tool and host | every request the session asked for, from WebFetch URLs to hosts named in commands | **no**: the platform holds it | the real cost (see below) |
 
 Refusals and unknown hosts come from layer B, not from reading results, so layer C never reads a tool's output (cheaper, and it never sees what a page or command returned). A session whose tool calls show network use but which has no layer B log is itself a breach, so tampering with B shows up in C.
 
-Layer C is the one Dinis asked for ("somewhere agents cannot edit"). It is the narrow form of P1 I described in block-2026-11-26-05: read only tool calls and results, keep only hosts and outcomes, copy no text, store nothing raw. It still reads transcripts in memory, so it needs Dinis's own yes, and the auditor should be one agent (cl-6.telemetry, or a dedicated cl-6.netaudit), not every agent.
+Layer C is the one Dinis asked for ("somewhere agents cannot edit"). It is the narrow form of P1 I described in block-2026-11-26-05: read only tool calls and results, keep only hosts and outcomes, copy no text, store nothing raw. It still reads transcripts in memory, so it needs Dinis's own yes. **It is the same request as cl-6.abp's P1**, not a second one: one named auditor, cl-6.telemetry, read-only, tool calls only, with this design's limits.
 
-Destinations behind NO_PROXY (Anthropic, MCP, package registries) do not pass through layer B; they show in layers A and C by tool name, which is enough for them.
+Destinations behind NO_PROXY (Anthropic, MCP, package registries, private ranges) do not pass through layer B; they show in layers A and C by tool name, which is enough for them; connectors stay governed by R3.
+
+A host list does not stop what a request carries (a token in a query string). The hook records a path or query only as a keyed hash, never in clear, and the audit keeps host, port, time and outcome only.
 
 ### 3. Detect and flag
 
@@ -67,12 +71,14 @@ Destinations behind NO_PROXY (Anthropic, MCP, package registries) do not pass th
 ## Order
 
 1. Now, no new tool needed: cl-6.maestro starts every new session on "Default" (limited), as already agreed for the conductor reset, the London agent and the social agent. Each agent's run report lists the hosts it needed.
-2. cl-6.abp adds network.allow and network.environment to every role, from those run reports (with the cover-all record).
-3. Dinis creates the few limited environments with exact hosts (his approval), and existing sessions are replaced on them at their next restart.
+2. cl-6.abp adds network.allow and network.environment to every role (done for the no-web-read roles), from those run reports, each list marked 'by the agent's own account' until layer A or C confirms it.
+3. Dinis creates the few limited environments (moving a session means replacing it at its next restart; most cl-6 sessions, cl-6.abp's and mine included, are on the unrestricted one today) with exact hosts (his approval), and existing sessions are replaced on them at their next restart.
 4. Layers A and B go into the hook kit, once the push-branch bypass is fixed and the kit passes again (P8 is suspended).
-5. Layer C on Dinis's yes, with the auditor named (cl-6.telemetry has offered, if its transcript read is granted), after cl-6.accountant's one-day measurement.
+5. Layer C on Dinis's one yes to P1 (cl-6.telemetry as the auditor), after cl-6.accountant's one-day measurement.
 
 ## Open
+
+- Test of layer B's start-up (CLAUDE_ENV_FILE) by cl-6.abp.
 
 - What Dinis saw done before (ask accounts A and B through cl-6.router).
 - Whether the platform can export its egress log for the account; if it can, it replaces layer C at no token cost.
