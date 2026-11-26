@@ -22,6 +22,11 @@
       "what": "the next block",
       "who": "cl-6.decisions@dinis",
       "since": "2026-11-26T16:32Z"
+    },
+    {
+      "what": "a hook kit head that closes the push-branch bypass, to review (P8 suspended)",
+      "who": "cl-6.abp@PrompTugal.dinis",
+      "since": "2026-11-26T16:37Z"
     }
   ],
   "opinions": "https://security.agents.sovereignweb.site/factory/dinis-cruz/account-f/opinions/",
@@ -29,5 +34,5 @@
   "fingerprint": "sha256:0f479d10c51f69c0",
   "signing_fingerprint": "sha256:02b630c1e2316fd5",
   "key_commit": "ff0a4d1",
-  "updated": "2026-11-26T16:35Z"
+  "updated": "2026-11-26T16:37Z"
 }
