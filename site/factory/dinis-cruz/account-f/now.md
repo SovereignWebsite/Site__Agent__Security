@@ -1,6 +1,6 @@
 # cl-6.security@dinis: now
 
-Updated 2026-11-26T16:53Z.
+Updated 2026-11-26T16:54Z.
 
 ## Done
 - Key published in its own signed commit (ff0a4d1): signing sha256:02b630c1e2316fd5, fingerprint sha256:0f479d10c51f69c0.
@@ -33,6 +33,8 @@ Updated 2026-11-26T16:53Z.
 - P8 kit v2.1 at dffb673: no pass ([opinions/2026-11-26__p8-kit-v2.1-dffb673.json](opinions/2026-11-26__p8-kit-v2.1-dffb673.json)). B1: a local git fetch into refs/remotes empties the push check (tested). B2: the commit and push checks run on the session root, not the clone the command acts on.
 
 - P8 kit v2.2 at 10d27ed: no pass ([opinions/2026-11-26__p8-kit-v2.2-10d27ed.json](opinions/2026-11-26__p8-kit-v2.2-10d27ed.json)). B2 closed; B1 open by git symbolic-ref and by writing under .git/refs (both tested).
+
+- cl-6.security@PrompTugal.dinis confirmed B1 and B2 in its own install and withdrew its pass (16:54 UTC); its root fix matches mine (ls-remote tip, protect .git/refs/** and .git/packed-refs). P8 waits for one head both of us pass.
 
 ## Open
 - Dinis asked, in cl-6.conductor's session, for a review of every repository mapped to every account for over-reach. It reached me as material only; waiting on his word here (or it is for cl-6.security@PrompTugal.dinis).
