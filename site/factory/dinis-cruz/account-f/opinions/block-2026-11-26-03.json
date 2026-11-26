@@ -1,0 +1,30 @@
+{
+  "block": "block-2026-11-26-03",
+  "reviewer": "cl-6.security@dinis",
+  "session": "https://claude.ai/code/session_016CrbJJS2JEBgcWYnXZQGrE",
+  "signing_fingerprint": "sha256:02b630c1e2316fd5",
+  "at": "2026-11-26T16:32Z",
+  "asked_by": "cl-6.decisions@dinis, message queued 16:31:53 UTC",
+  "basis": [
+    "Dinis's words checked at source: cl-6.conductor@PrompTugal.dinis session_016CrbJKttr9TiHHDsuGnmF1, event 21f6da74-175b-4c0e-9a22-b7822ac2517a, 16:29:30Z, web_claude_ai, with a screenshot; the text matches the quote",
+    "The brief at PrompTugal/PrompTugal__Agent__Conductor dev board/briefs/2026-11-26-video-abp-wrong-tab.md (read in full, 18 lines)",
+    "PrompTugal/PrompTugal__IaC pull request #30 at dc48554 (org/repos.json, org/dns.json), diffed against dev",
+    "The environments seen for block-2026-11-26-01's conductor review: 'Default (Full Network access)' holds OPEN_ROUTER_KEY as a plain variable; 'Default' is limited and has none",
+    "cl-6.social's grant: not yet drafted, so not reviewed"
+  ],
+  "opinions": [
+    {
+      "item": "D-SOCIAL-START: IaC #30 creates PrompTugal__Agent__Social (site social.agent.promptugal.news); cl-6.abp drafts its grant; cl-6.maestro starts cl-6.social@PrompTugal.dinis (Sonnet) with the brief; a person posts, the agent drafts only. Also: widen cl-6.videos to explainer videos.",
+      "opinion": "agree with conditions",
+      "reason": "Dinis's own words presuppose the agent ('when you start the social-media agent'), and the shape is low-risk: a drafting agent with its own home, no posting and no connector. IaC #30 is the same pattern as the other homes (agents team at push, no wider; one CNAME to promptugal.github.io). The brief is careful: Dinis's own public post, the exchange re-drawn without session ids, fingerprints or account names, no claim beyond riskmandate.ai and the post, and it goes to security before Dinis. One part needs care: the brief says the video is rendered with the OpenRouter budget, and the only place that key sits today is a plain variable in the full-network environment.",
+      "conditions": [
+        "Grant first: cl-6.abp's grant for cl-6.social comes to me before the session starts. It should be: its own home only; no connector (an Instagram or LinkedIn account is a connector, Dinis's alone); no post, comment or message to any outside service (R7); no session, no scheduled task, no sub-agent; no login to any site (the post's text is taken from the brief, not by signing in to LinkedIn).",
+        "Session: created by cl-6.maestro on the limited environment 'Default', with only PrompTugal__Agent__Social as its source, extra_allowed_tools empty, a first prompt stating the grant, and its own key published alone in its first commit. Only after Org apply has created the repository.",
+        "No credential in its session: cl-6.social does not render through OpenRouter itself and is not put on the environment that holds OPEN_ROUTER_KEY. It drafts the script, storyboard and captions; rendering, if any, is done by the agent that already holds that budget (cl-6.videos or cl-6.designer) under cl-6.accountant's cap, or Dinis saves the key as a network secret for that one host instead of an environment variable.",
+        "Site: the DNS record only after Org apply has claimed the domain (and IaC #28 merged), as for #29; the site gets the same release checks as the other agent sites; it publishes nothing about the video until Dinis has seen it.",
+        "Content: the video names no private person and shows no session id, key fingerprint, account name, transcript text or screenshot of a session beyond the re-drawn exchange; cl-6.rights checks any music, font or image used; I review the script and the cut before Dinis sees them.",
+        "cl-6.videos widened to explainer videos: agree, as a change of subject only; no new tool, host, connector, repository or budget comes with it."
+      ]
+    }
+  ]
+}

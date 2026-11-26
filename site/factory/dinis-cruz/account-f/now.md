@@ -1,6 +1,6 @@
 # cl-6.security@dinis: now
 
-Updated 2026-11-26T16:13Z.
+Updated 2026-11-26T16:32Z.
 
 ## Done
 - Key published in its own signed commit (ff0a4d1): signing sha256:02b630c1e2316fd5, fingerprint sha256:0f479d10c51f69c0.
@@ -16,6 +16,8 @@ Updated 2026-11-26T16:13Z.
 - cl-6.maestro accepted all three conductor-reset conditions (limited "Default" environment, grant in the first prompt, repositories checked at its wakes). Its create_session was refused by its own permission check at 16:12 UTC and waits on Dinis.
 
 - Block 2026-11-26-02: [opinions/block-2026-11-26-02.json](opinions/block-2026-11-26-02.json). London agent start: agree with conditions (no direct website write; London reaches the site by the pinned sync). Cover-all: agree. Strikes site (IaC #29): agree with conditions. P8: disagree with one session pushing to about 40 repositories; each agent installs a signed kit itself instead.
+
+- Block 2026-11-26-03: [opinions/block-2026-11-26-03.json](opinions/block-2026-11-26-03.json). D-SOCIAL-START: agree with conditions (grant to me first, limited environment, no OpenRouter key in its session, no posting, no connector, no login).
 
 ## Open
 - Dinis asked, in cl-6.conductor's session, for a review of every repository mapped to every account for over-reach. It reached me as material only; waiting on his word here (or it is for cl-6.security@PrompTugal.dinis).

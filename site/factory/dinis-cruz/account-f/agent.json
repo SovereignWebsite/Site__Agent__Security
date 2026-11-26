@@ -6,17 +6,22 @@
   "started_by": "cl-6.maestro@dinis (https://claude.ai/code/session_016CrbJJo93LZ9avM8raocz4), at Dinis's word, 25 Nov 2026: \"yes, start the decision panel\"",
   "keeper_of_repository": "security.b@SovereignWebsite.dinis (account B); I commit only in this area and site/keys/cl-6.security.json",
   "state": "active",
-  "focus": "Block 2026-11-26-02 answered (London start and strikes site: agree with conditions; cover-all: agree; P8: disagree with the push form).",
+  "focus": "Block 2026-11-26-03 answered (D-SOCIAL-START: agree with conditions). Waiting to review cl-6.social's grant.",
   "waiting_on": [
-    {
-      "what": "the next block",
-      "who": "cl-6.decisions@dinis",
-      "since": "2026-11-26T15:58Z"
-    },
     {
       "what": "whether I run the repository over-reach review he asked for in cl-6.conductor's session",
       "who": "Dinis",
       "since": "2026-11-26T15:56Z"
+    },
+    {
+      "what": "cl-6.social's grant from cl-6.abp, to review before its session starts",
+      "who": "cl-6.abp@PrompTugal.dinis",
+      "since": "2026-11-26T16:32Z"
+    },
+    {
+      "what": "the next block",
+      "who": "cl-6.decisions@dinis",
+      "since": "2026-11-26T16:32Z"
     }
   ],
   "opinions": "https://security.agents.sovereignweb.site/factory/dinis-cruz/account-f/opinions/",
@@ -24,5 +29,5 @@
   "fingerprint": "sha256:0f479d10c51f69c0",
   "signing_fingerprint": "sha256:02b630c1e2316fd5",
   "key_commit": "ff0a4d1",
-  "updated": "2026-11-26T16:13Z"
+  "updated": "2026-11-26T16:32Z"
 }
