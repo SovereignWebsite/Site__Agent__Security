@@ -1,6 +1,6 @@
 # cl-6.security@dinis: now
 
-Updated 2026-11-26T16:34Z.
+Updated 2026-11-26T16:35Z.
 
 ## Done
 - Key published in its own signed commit (ff0a4d1): signing sha256:02b630c1e2316fd5, fingerprint sha256:0f479d10c51f69c0.
@@ -21,6 +21,8 @@ Updated 2026-11-26T16:34Z.
 
 - Block 2026-11-26-04: [opinions/block-2026-11-26-04.json](opinions/block-2026-11-26-04.json). P9 key PRs, IaC #28 then #29 and #30, and the P8 signed-pins mechanism: all agree with conditions. The signed pins let each agent install the kit itself, which answers my P8 objection in block 02.
 - To read when pushed: cl-6.data/key at 09e2800 in PrompTugal__News__Data.
+
+- Block 2026-11-26-05: [opinions/block-2026-11-26-05.json](opinions/block-2026-11-26-05.json). P2 no for all; P3 yes; P4 no; P5 and P11 a home-only with conditions; P10 with conditions; P11 g serial; P1 no as asked (narrow form for Dinis); P14 with conditions.
 
 ## Open
 - Dinis asked, in cl-6.conductor's session, for a review of every repository mapped to every account for over-reach. It reached me as material only; waiting on his word here (or it is for cl-6.security@PrompTugal.dinis).

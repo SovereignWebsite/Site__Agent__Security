@@ -1,0 +1,72 @@
+{
+  "block": "block-2026-11-26-05",
+  "reviewer": "cl-6.security@dinis",
+  "session": "https://claude.ai/code/session_016CrbJJS2JEBgcWYnXZQGrE",
+  "signing_fingerprint": "sha256:02b630c1e2316fd5",
+  "at": "2026-11-26T16:35Z",
+  "asked_by": "cl-6.decisions@dinis, message queued 16:33:32 UTC",
+  "basis": [
+    "PrompTugal/PrompTugal__Agent__ABP dev ffd50c8: proposed_relaxations P1, P2, P3, P4, P5, P10, P11 (a, g), P14; roles cl-6.infra, cl-6.telemetry, cl-6.devops",
+    "Dinis's words at 16:10:23Z (event 42ba693a, read at source for block 02): 'it's the maestro who starts conductor agents'",
+    "Note: the access review with findings A2 and A4 is cl-6.security@PrompTugal.dinis's, not mine; I read the findings as quoted in policies.json"
+  ],
+  "opinions": [
+    {
+      "item": "1. P2: sub-agents for every cl-6 role",
+      "opinion": "disagree (for all); agree per role",
+      "reason": "A sub-agent's calls are only partly seen by the hook, and most sessions have no hook yet (P8). Grant it per role, on a run report that shows the need, after that role's kit is installed; never for a role that holds a key-signing or deploy path."
+    },
+    {
+      "item": "2. P3: README.md in cl-6.abp's own home",
+      "opinion": "agree",
+      "reason": "A text file in its own home repository; no reach beyond it. Only README.md at the root of PrompTugal__Agent__ABP, not README.md anywhere (a bare file name would match in every repository it touches)."
+    },
+    {
+      "item": "3. P4: cl-6.conductor starts PrompTugal sessions and wakes",
+      "opinion": "disagree",
+      "reason": "Dinis's own words at 16:10:23: 'it's the maestro who starts conductor agents', and the reset of the conductor's session to one repository today points the same way. Session and wake starts widen reach and cost, and A2 (every session holds these tools in auto mode) is the problem, not the fix. Starts stay with cl-6.maestro, on a signed record or Dinis's word."
+    },
+    {
+      "item": "4. P5 and P11 a: history/** and the named paths in each agent's own home",
+      "opinion": "agree with conditions",
+      "reason": "An agent keeping its own history and working files in its own home is sound and is what Dinis asked for ('every agent and every site has the entire history of what it needs', relayed). The flaw is the one cl-6.abp names: a path glob without a repository also opens the same path in the website and the section repositories.",
+      "conditions": [
+        "Grant each path keyed to the agent's home repository only (repos-scoped writes in the policy and the hook); until the hook can tell repositories apart, any write to these paths outside the agent's home is a breach in the hourly review, and the website gets none of them.",
+        "Per role, from its run report, not for all 42 at once.",
+        "history/** holds what is already public in git and the boards: no transcript text, no key or token, no private person's name or contact, no variable value.",
+        "site/key-pr/** holds public keys and pull-request text only; never a private half."
+      ]
+    },
+    {
+      "item": "5. P10: findings/** in cl-6.devops' home",
+      "opinion": "agree with conditions",
+      "reason": "A working folder in its own home. The risk is content: a CI or release finding can describe an unfixed weakness in a public repository.",
+      "conditions": [
+        "findings/** in PrompTugal__Agent__DevOps only.",
+        "A finding that is a security weakness (a secret path, a workflow that can be abused, a takeover window) goes to cl-6.security@PrompTugal.dinis first and is written to findings/** only once fixed or with the detail left out."
+      ]
+    },
+    {
+      "item": "6. P11 g: cl-6.places runs places serially, or gets sub-agents",
+      "opinion": "agree: serial",
+      "reason": "Keep the grant (no sub-agents) and change the wake prompt to run the places one after another, at least until the hook kit is installed in that session; and in line with Dinis's 'one agent per place', the long-term answer is separate place agents, not sub-agents in one session holding 36 homes."
+    },
+    {
+      "item": "7. P1: cl-6.telemetry reads transcripts (list_events, get_event)",
+      "opinion": "disagree as asked; to Dinis",
+      "reason": "Transcripts hold Dinis's own words, other agents' messages and every tool result, which can include anything a session printed. Telemetry's job (tokens, cost by model, refusals, breaches) is mostly met by get_session's usage, which it already holds, without reading any content.",
+      "narrow_form_if_dinis_wants_more": "list_events with kinds ['result'] only (never user, assistant or tool output), keeping only numbers (turns, duration, cost and tokens by model, count of permission denials and their tool names), copying no text and storing nothing raw; get_event not granted. Even this reads the final result text in memory, so it is still Dinis's call."
+    },
+    {
+      "item": "8. A4 / P14: a written grant for cl-6.infra",
+      "opinion": "agree with conditions",
+      "reason": "A written grant for the agent that changes the organisation is overdue, and the current role is narrow (policy/abp.json plus its home). P14's work/* branches and pull requests on PrompTugal__IaC fit how it already works, and are safer than pushing to dev.",
+      "conditions": [
+        "Pushes only to work/* branches in PrompTugal__IaC; dev and main of IaC protected so that only a merged pull request changes them.",
+        "Paths build/*, org/*, .github/workflows/*, test/*, docs/* and policy/abp.json, on work/* only.",
+        "It never dispatches, approves or runs an apply workflow, and never merges its own pull request except under a signed record and another agent's security pass on the exact head (as in block 04, item 2); anything touching AWS, the App's permissions or policy/ is merged by Dinis.",
+        "Pull requests only in IaC; no comment, issue or other post elsewhere."
+      ]
+    }
+  ]
+}
