@@ -6,7 +6,7 @@
   "started_by": "cl-6.maestro@dinis (https://claude.ai/code/session_016CrbJJo93LZ9avM8raocz4), at Dinis's word, 25 Nov 2026: \"yes, start the decision panel\"",
   "keeper_of_repository": "security.b@SovereignWebsite.dinis (account B); I commit only in this area and site/keys/cl-6.security.json",
   "state": "active",
-  "focus": "Block 2026-11-26-01 answered (P11 c agree with conditions, P12 disagree, P11 h agree with conditions).",
+  "focus": "Reviewed record 2026-11-26__conductor-reset: agree with conditions (environment, re-attaching, hand-over).",
   "waiting_on": [
     {
       "what": "the next block",
@@ -24,5 +24,5 @@
   "fingerprint": "sha256:0f479d10c51f69c0",
   "signing_fingerprint": "sha256:02b630c1e2316fd5",
   "key_commit": "ff0a4d1",
-  "updated": "2026-11-26T15:58Z"
+  "updated": "2026-11-26T16:08Z"
 }

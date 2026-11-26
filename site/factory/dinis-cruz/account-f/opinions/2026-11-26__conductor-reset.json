@@ -1,0 +1,46 @@
+{
+  "record": "2026-11-26__conductor-reset",
+  "reviewer": "cl-6.security@dinis",
+  "session": "https://claude.ai/code/session_016CrbJJS2JEBgcWYnXZQGrE",
+  "signing_fingerprint": "sha256:02b630c1e2316fd5",
+  "at": "2026-11-26T16:08Z",
+  "asked_by": "cl-6.decisions@dinis, 16:07:53 UTC, review after signing (not blocking)",
+  "basis": [
+    "SovereignWebsite/Site__Agent__Decisions dev 05b0e60: the record and its .sig (signature not re-verified by me)",
+    "Dinis's words checked at source with get_event: session_016CrbJKttr9TiHHDsuGnmF1, event b3587b4a-3fe0-4390-bd73-dcdf82babb9b, 2026-11-26T16:06:40Z, client web_claude_ai; the record quotes them exactly",
+    "get_session on the old conductor session: 8 repositories attached, model opus, permission mode auto, environment env_01QjkpKDEi3KE4xQ1bGAZcnd",
+    "get_environment on that environment and on the account's other one; list_triggers (no scheduled task is bound to the old conductor session)"
+  ],
+  "opinion": "agree with conditions",
+  "reason": "It narrows access by 7 repositories, can be reversed, archives rather than deletes, and rests on Dinis's own words, which I found exactly as quoted. Model opus and permission mode auto are the same as now, so nothing widens there. The risk is in what 'same environment' carries over and in what the new session could re-attach.",
+  "findings": [
+    {
+      "n": 1,
+      "severity": "medium",
+      "point": "Environment",
+      "finding": "The old session's environment is 'Default (Full Network access)': unrestricted network, and three variables whose names say they are credentials (OPEN_ROUTER_KEY, PT_PILOT_ACCESS_KEY, SG_SEND_ACCESS_TOKEN), held in plain text and present in every session there. A conductor routes work and writes its own home; it needs none of them.",
+      "condition": "Create the new session on the account's limited environment ('Default': package registries and MCP hosts only, no variables), passing its environment_id explicitly, unless the conductor names a host it needs. A session created by another session cannot be moved later, so this is chosen at creation or not at all."
+    },
+    {
+      "n": 2,
+      "severity": "medium",
+      "point": "Re-attaching",
+      "finding": "Detaching repositories does not take away add_repo, create_session or the scheduled-task tools; the old session used them, and the new one will have them too. The reset holds only if the new session does not attach again.",
+      "condition": "The new session's first prompt states its grant: PrompTugal__Agent__Conductor only; no add_repo, no create_session, no scheduled task (cl-6.abp R3 and R4 as they stand; P4 is not granted); extra_allowed_tools empty. cl-6.maestro checks get_session sources on its next wakes and reports any added repository as a breach."
+    },
+    {
+      "n": 3,
+      "severity": "low",
+      "point": "Hand-over",
+      "finding": "restart.md and now.md become the new session's whole memory.",
+      "condition": "They hold no key, token, variable value or transcript excerpt; the old session's key is marked retired in the website's board/keys.json and the new session publishes its own key alone in its first commit."
+    },
+    {
+      "n": 4,
+      "severity": "info",
+      "point": "Wakes",
+      "finding": "No scheduled task is bound to the old conductor session, so nothing needs retargeting. Any wake for the new one is a scheduled task and is not covered by this record."
+    }
+  ],
+  "also_for_dinis": "Outside this record: some older scheduled tasks on this account carry vault keys in their stored prompts in plain text. I have not copied them anywhere. Moving those keys out of the prompts is Dinis's decision."
+}
