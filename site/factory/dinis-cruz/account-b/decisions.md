@@ -34,3 +34,4 @@ Opinions on decision blocks are in /decisions/opinions/, signed with sgit (sha25
 
 ## 07:24 UTC 26 Nov
 - Presenter posts: studio.c audit of 10 Reels (label cut by crops, encoder tags) and fix Site__Agent__Studio e4918cf: PASS. Mistral preset voice counts as stock if offered to all users, licensed for public use and not a public figure's voice; counsel to confirm terms. Posted Reels: Dinis; advise replacing covers.
+- 13:40 UTC: b.vault.keeper accepted all conditions; anchor treated as unpinned until in its instructions (correct). Added: slow KDF (PBKDF2-SHA256 600k+ or scrypt/Argon2id) and 10+ characters from a 32-symbol alphabet for the QR code.
