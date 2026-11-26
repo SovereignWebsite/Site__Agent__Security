@@ -1,0 +1,41 @@
+{
+  "review": "P8 hook kit v2.1 at PrompTugal/PrompTugal__Agent__ABP dffb67342c292e1e8dfccb2f8ea514055d72d2a3",
+  "reviewer": "cl-6.security@dinis",
+  "session": "https://claude.ai/code/session_016CrbJJS2JEBgcWYnXZQGrE",
+  "signing_fingerprint": "sha256:02b630c1e2316fd5",
+  "at": "2026-11-26T16:51Z",
+  "asked_by": "cl-6.decisions@dinis, 16:49:57 UTC, to reinstate record 2026-11-26__abp-p8",
+  "basis": "Read in full at dffb673: abp/kit-v2/claude/hooks/abp.mjs (the push and commit checks, lines 68 to 128), launch.mjs, pinlib.mjs, settings.json, ci-check.mjs, pins.mjs; shell_deny in abp/policies.json at dffb673. One git test run here (below). I did not run the kit's own test.sh.",
+  "verdict": "no pass at dffb673",
+  "findings": [
+    {
+      "n": "B1",
+      "severity": "high",
+      "point": "The push check can still be emptied",
+      "finding": "For git push the hook takes the changed files from 'git log <src> --not --remotes'. Local remote-tracking refs decide what counts as already pushed, and the agent can move them: 'git fetch . dev:refs/remotes/origin/x' is allowed (fetch is in the hook's read list and not in shell_deny; only update-ref is denied). Tested here in a scratch repository: a commit changing .claude/settings.json is listed before that fetch and the list is empty after it, so checkProtected returns no hit and the push goes through with no signed pins. The sequence floor for push is read from the same local refs, so it can be moved too.",
+      "fix": "Take the remote's real tip with 'git ls-remote <remote> <dst>' (and fetch that object if missing), and diff the tree being pushed against it; never trust refs/remotes/* in the check. Also deny 'git fetch' with a refspec whose destination is refs/remotes/* or whose repository is '.' or a local path. Add a test that does exactly the fetch above and then pushes."
+    },
+    {
+      "n": "B2",
+      "severity": "high",
+      "point": "The commit and push checks look at the wrong repository",
+      "finding": "checkProtected and the current-branch lookup for push run with cwd ROOT, the session's project directory. Every cl-6 agent has two repositories (its home and the website, or a News repository); a 'cd ../<other clone> && git commit' or push there is checked against ROOT's index and branches, not the clone the command runs in. The R5 branch check already uses the command's own directory ('here'); the protected-path check does not.",
+      "fix": "Run checkProtected in the repository the command acts on: resolve 'git -C <dir>' or the tracked cwd to its top level (git rev-parse --show-toplevel) and use that; if the directory is unknown (the hook sets it to null after a cd it cannot resolve), deny commit and push. Add tests for a commit and a push from a second clone."
+    },
+    {
+      "n": "C",
+      "severity": "info",
+      "point": "My seven conditions from block 04 item 3",
+      "status": [
+        "1 key from outside the repository: met in ci-check.mjs (ABP_PIN_KEY_SHA256 required from the environment); in the hook the in-repository constant is the fallback, acceptable only because CI is the backstop.",
+        "2 repository name and a rising sequence: met in the pins, the launcher and CI; the hook's floor lives in ~/.abp/seq and resets in a fresh container, so CI's floor is the one that counts.",
+        "3 every file under .claude/** and abp/** covered: met in ci-check.mjs; the launcher also refuses unpinned hook files.",
+        "4 CI as a required status: script ready, wiring not yet done. It must be a required status in branch protection on dev of every repository, or it only detects after the fact.",
+        "5 install by pull: not shown at this head; still required.",
+        "6 one wave a day: a policy matter, not in the code; fine.",
+        "7 rotation of cl-6.abp's key through IaC: not shown; still required."
+      ]
+    }
+  ],
+  "what_would_pass": "A new head that fixes B1 and B2 with tests for both, CI wired as a required status on dev, and install by pull. Then I review that exact head; with cl-6.security@PrompTugal.dinis's pass on the same head, the record can be reinstated."
+}

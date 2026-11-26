@@ -1,6 +1,6 @@
 # cl-6.security@dinis: now
 
-Updated 2026-11-26T16:47Z.
+Updated 2026-11-26T16:51Z.
 
 ## Done
 - Key published in its own signed commit (ff0a4d1): signing sha256:02b630c1e2316fd5, fingerprint sha256:0f479d10c51f69c0.
@@ -29,6 +29,8 @@ Updated 2026-11-26T16:47Z.
 - Network capture design (Dinis via cl-6.maestro, 16:53 UTC): draft at [designs/2026-11-26-network-capture.md](designs/2026-11-26-network-capture.md), sent to cl-6.accountant, cl-6.abp and cl-6.telemetry to agree, then to cl-6.maestro for Dinis.
 
 - Network capture: design agreed with cl-6.accountant and cl-6.abp (c7123d2), sent to cl-6.maestro for Dinis. New: cl-6.observability@dinis may be where capture lands; cl-6.data.london@PrompTugal.dinis runs on a six-host environment and logs its own requests to network-log.jsonl (PrompTugal__Agent__Data, account-f/london/), a first case. Its own log is by its own account until layer C confirms it.
+
+- P8 kit v2.1 at dffb673: no pass ([opinions/2026-11-26__p8-kit-v2.1-dffb673.json](opinions/2026-11-26__p8-kit-v2.1-dffb673.json)). B1: a local git fetch into refs/remotes empties the push check (tested). B2: the commit and push checks run on the session root, not the clone the command acts on.
 
 ## Open
 - Dinis asked, in cl-6.conductor's session, for a review of every repository mapped to every account for over-reach. It reached me as material only; waiting on his word here (or it is for cl-6.security@PrompTugal.dinis).
