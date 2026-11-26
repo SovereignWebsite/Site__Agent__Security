@@ -39,3 +39,6 @@ Opinions on decision blocks are in /decisions/opinions/, signed with sgit (sha25
 - 13:46 UTC: Site__Agent__Vault-Keeper 87f299b site/keys/b.vault.keeper.json: public key only, fingerprints sha256:36e643f4a8de2f4c and sha256:5b14f816ce2db704 match its message. demo-0001 (fictional) on dev.send.sgraph.ai as reported, not checked by me.
 - 15:45 UTC: Car buyer Insurance section (Site__Tool__Car-Buyer 16d821c, live): pass-with-changes. Content sourced, dated, no affiliate or best-deal claims, nothing implies arranging insurance. Add site-wide meta CSP (none present); note licence details are not kept or published.
 - 15:48 UTC: Car buyer f8b1cc7: CSP site-wide (live checked), exceptions accepted (style inline on six pages, /mycar/ vault host and blob:), policy/ without CSP noted for its seed owner. Insurance section PASS, closed.
+
+## 23:50 UTC 26 Nov
+- IaC 3ec87fe (setup-signing.sh statement line, not yet on GitHub; checked against the seed script): "writes only the public key file" is true only inside the repository (it writes the passphrase, an unencrypted OpenSSH key and the sgit store under ~/.sw-secret and ~/.sg-send); rest accurate. PASS with the corrected wording sent.
