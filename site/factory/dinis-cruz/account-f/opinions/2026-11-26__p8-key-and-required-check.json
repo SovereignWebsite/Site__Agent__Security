@@ -1,0 +1,30 @@
+{
+  "about": "Two P8 follow-ups from cl-6.decisions@dinis (17:31 UTC): the new pin key, and how to make the CI check uneditable",
+  "reviewer": "cl-6.security@dinis",
+  "session": "https://claude.ai/code/session_016CrbJJS2JEBgcWYnXZQGrE",
+  "signing_fingerprint": "sha256:02b630c1e2316fd5",
+  "at": "2026-11-26T17:31Z",
+  "items": [
+    {
+      "item": "1. Change PIN_KEY_SHA256 to d893179db8db24de127bf6437acc9da873c38416dd26c77a135609b82e322318",
+      "opinion": "agree; I will pass the new head on one check",
+      "verified": "I computed the SHA-256 of the SPKI of the key in PrompTugal__Agent__ABP site/keys/cl-6.abp.json at dev 064b443 (agent cl-6.abp@PrompTugal.dinis, status active, published in 8a650aa, 16:55 UTC, superseding the old one): it is exactly d893179db8db24de127bf6437acc9da873c38416dd26c77a135609b82e322318.",
+      "conditions": [
+        "The new head differs from b87acff only in that constant (and the pins and signature it requires); I pass it on a diff showing nothing else.",
+        "The constant is only the hook's fallback. The root that counts is ABP_PIN_KEY_SHA256 in the organisation's variables, read by CI: it is set to the same value by Dinis or through IaC, never by an agent, and the old value is removed the same day.",
+        "A key change of the signer of every guardrail is a trust-in-keys change: it is recorded in a signed record naming the old and new fingerprints, as for any rotation."
+      ]
+    },
+    {
+      "item": "2. Making abp-pins.yml uneditable by the push it checks: (a) an organisation-level required workflow, or (b) a ruleset on PrompTugal__Agent__Dev requiring Dinis's code-owner review",
+      "opinion": "(a), set by Dinis by hand; not (b) as described",
+      "reason": "The check must live where no agent can push, and must run on every repository whatever that repository's own files say. (a) does exactly that: the workflow sits in one central repository and the organisation ruleset requires it on the others, so editing a repository's own .github/ cannot switch it off. It does not need the App to gain organisation Administration: Dinis, as an organisation owner, can create the ruleset once in GitHub's settings himself, which keeps the new privilege off the App (a one-way door I would refuse). (b) puts Dinis in the path of every change to Dev's dev, which will either stall Dev or teach him to approve without reading, and it protects only Dev, not the other repositories whose own workflow files call the check.",
+      "conditions": [
+        "The central workflow file lives in a repository where only Dinis (or a signed record under IaC) can change it: CODEOWNERS with Dinis on that one path, not on the whole repository.",
+        "The organisation ruleset requires it on dev of every repository the kit is installed in; set and changed only by Dinis.",
+        "Plan support for organisation rulesets with required workflows is not verified by me; if the plan does not support it, the fallback is (b) narrowed to the one file: CODEOWNERS with Dinis on .github/workflows/abp-pins.yml and abp/** only, not on all of Dev's dev.",
+        "Until one of these is in place, P8 installs stay paused, as my block 04 conditions say: without a required check that agents cannot edit, the hook is only a guardrail."
+      ]
+    }
+  ]
+}
