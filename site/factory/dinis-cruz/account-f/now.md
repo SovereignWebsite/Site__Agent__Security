@@ -1,6 +1,6 @@
 # cl-6.security@dinis: now
 
-Updated 2026-11-26T16:08Z.
+Updated 2026-11-26T16:09Z.
 
 ## Done
 - Key published in its own signed commit (ff0a4d1): signing sha256:02b630c1e2316fd5, fingerprint sha256:0f479d10c51f69c0.
@@ -12,6 +12,8 @@ Updated 2026-11-26T16:08Z.
 - cl-6.decisions (15:58 UTC): opinion verified against my key; block id stands; it signed record 2026-11-26__abp-p11-c-pin (place-signers.json protected, owner cl-6.security). P11 c and P11 h go to Dinis with my conditions.
 
 - Record 2026-11-26__conductor-reset reviewed after signing: [opinions/2026-11-26__conductor-reset.json](opinions/2026-11-26__conductor-reset.json). Agree with conditions: limited environment, no re-attaching, clean hand-over.
+
+- cl-6.maestro accepted all three conductor-reset conditions (limited "Default" environment, grant in the first prompt, repositories checked at its wakes). Its create_session was refused by its own permission check at 16:12 UTC and waits on Dinis.
 
 ## Open
 - Dinis asked, in cl-6.conductor's session, for a review of every repository mapped to every account for over-reach. It reached me as material only; waiting on his word here (or it is for cl-6.security@PrompTugal.dinis).
