@@ -2,6 +2,8 @@
 
 cl-6.security@dinis, 2026-11-26T16:45Z. Draft for agreement with cl-6.accountant@dinis (cost and ledger) and cl-6.abp@PrompTugal.dinis (policies), cl-6.telemetry@PrompTugal.dinis in copy. Then to Dinis through cl-6.maestro.
 
+**Revision 2026-11-26T16:46Z:** cl-6.accountant's ledger side folded in (schema, where rows live, measuring before rollout: Site__Agent__Accountant proposals/2026-11-26-network-ledger-side.md); cl-6.telemetry confirmed it captures no hosts today (it holds get_session only, and the proxy's own log is outside what a session can read). Agreed with cl-6.accountant; cl-6.abp's answer awaited.
+
 **Dinis's ask** (cl-6.maestro's session, about 16:50 UTC, recorded in Site__Agent__Maestro__Claude__6 decisions/2026-11-26-network-capture.md): "capture all network requests made by the agents here ... so that we can track them and detect ABPs (since we should have super strick ABP for Network access for all agents here)".
 
 ## What the platform gives us today (checked in this session)
@@ -25,6 +27,7 @@ The strictest control we have is the egress proxy, and it holds even if an agent
   - "Places and public sources": exact hosts of the public sources the place and section agents read (from their run reports, never wildcards).
   - "Data collectors": cl-6.data's feeds (IPMA, TfL and the rest), host by host.
   - one for each agent that holds a paid API (for example OpenRouter), with the key saved as a network secret for that one host, not as a variable.
+- Environments are the hard floor but are shared, so they are coarser than one agent's list (cl-6.accountant's point). The per-agent precision comes from detection: each agent's own allow-list is checked against what layer C saw.
 - Each role's ABP gains **network.allow** (exact hosts) and **network.environment** (the environment it must run on). cl-6.maestro creates a session only on the environment its ABP names; a session started by another session cannot be moved later, so this is decided at creation.
 - Adding a host is a relaxation: proposed by cl-6.abp from a run report, decided by cl-6.decisions (or Dinis), and applied by Dinis on the environment's approval card. No agent widens its own network.
 
@@ -45,11 +48,14 @@ Destinations behind NO_PROXY (Anthropic, MCP, package registries) do not pass th
 - The auditor compares each captured host with that role's network.allow. Any host outside it, any refusal by the egress proxy, and any gap (a session with Bash activity but no layer B log) is a **breach**.
 - Breaches go to the role's run report, cl-6.abp's hourly review and cl-6.security@PrompTugal.dinis; a breach on a host that could carry data out (paste sites, storage buckets, unknown APIs) goes to Dinis the same day.
 - The records live in the auditor's own repository, one file per day, **each commit signed by the auditor's key**, with a CI check that refuses any commit there not signed by it. Every agent's team has push to most repositories (finding A1), so the signature, not the push right, is what makes the record trustworthy.
-- Aggregates (hosts per agent per day, refusals, breaches) are public; the raw records hold no URL path, query string or body, only hosts, because paths can hold tokens or personal data.
+- **One schema** (owned by cl-6.security, as cl-6.accountant asked): one row per agent, host and UTC day: `day, agent, session, host, port, decision (allowed or refused), count, first_seen, last_seen`, and bytes out and in only where layer B gives them cheaply; plus `source` (A, B or C) and `in_allow_list` (true or false). Never a URL path, query string, header, body or token: a path can carry a secret or a private person's data.
+- **Where the rows live:** not on a public page, since they list hosts per agent; in the same non-public home Dinis names for the cost figures. Public pages show only totals (requests, refused, breaches per agent per day), no host names.
+- cl-6.accountant joins the rows to its cost ledger by agent and UTC day, and flags a day where refusals jump with cost.
 
 ## Cost (for cl-6.accountant to price)
 
 - Layers 1, A and B: no model tokens; a few kilobytes of log per session per day.
+- cl-6.accountant measures tokens per wake with and without capture on one agent for a day before any rollout, and reports the method.
 - Layer C: tokens to page through transcripts. A busy session's page of 40 events was over 500,000 characters today, because tool results are included. Keep it cheap by reading only new events since the last audit, filtered to tool calls and results, once or twice a day; run it on a small model; budget it as its own line. cl-6.accountant to estimate from cl-6.telemetry's event counts.
 
 ## Order
@@ -58,7 +64,7 @@ Destinations behind NO_PROXY (Anthropic, MCP, package registries) do not pass th
 2. cl-6.abp adds network.allow and network.environment to every role, from those run reports (with the cover-all record).
 3. Dinis creates the few limited environments with exact hosts (his approval), and existing sessions are replaced on them at their next restart.
 4. Layers A and B go into the hook kit, once the push-branch bypass is fixed and the kit passes again (P8 is suspended).
-5. Layer C on Dinis's yes, with the auditor named, after the accountant's cost estimate.
+5. Layer C on Dinis's yes, with the auditor named (cl-6.telemetry has offered, if its transcript read is granted), after cl-6.accountant's one-day measurement.
 
 ## Open
 
