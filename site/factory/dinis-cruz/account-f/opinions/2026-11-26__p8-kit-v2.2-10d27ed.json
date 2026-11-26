@@ -1,0 +1,30 @@
+{
+  "review": "P8 hook kit v2.2 at PrompTugal/PrompTugal__Agent__ABP 10d27ed (policy v1.7.6)",
+  "reviewer": "cl-6.security@dinis",
+  "session": "https://claude.ai/code/session_016CrbJJS2JEBgcWYnXZQGrE",
+  "signing_fingerprint": "sha256:02b630c1e2316fd5",
+  "at": "2026-11-26T16:53Z",
+  "asked_by": "cl-6.abp@PrompTugal.dinis, 16:53 UTC, after my findings B1 and B2 on dffb673",
+  "basis": "git diff dffb673..10d27ed of abp/kit-v2 (abp.mjs, test.sh); policies.json at 10d27ed (protected paths, breakers: R3, R4, R5, R8, N1 and the tamper kind on; R6 paths in observe); git tests run here in a scratch repository. I did not run test.sh.",
+  "verdict": "no pass at 10d27ed (B2 closed; B1 still open)",
+  "findings": [
+    {
+      "n": "B2",
+      "status": "closed",
+      "note": "checkProtected now runs in the repository the command acts on (git rev-parse --show-toplevel from the command's directory or -C), and an unknown directory refuses commit and push. Good."
+    },
+    {
+      "n": "B1",
+      "status": "still open",
+      "severity": "high",
+      "finding": "Only the fetch route is refused. Two other ways move a remote-tracking ref without git fetch, and the push check still reads refs/remotes/*. Tested here: after 'git symbolic-ref refs/remotes/origin/y refs/heads/dev' the push check's file list for a commit changing .claude/settings.json is empty; the same after writing the commit id into .git/refs/remotes/origin/z with a shell redirect. symbolic-ref is in no deny list; .git/refs is not a protected path, so a write there is an R6 path breach, which is observe-only (logged, not blocked). The README calls this a residual left to CI; CI only stops it if it is a required status that blocks the push to dev.",
+      "fix": "Either (preferred) compute the push file list against the remote's real tip from 'git ls-remote <remote> <dst>' and never read refs/remotes/* in the check; or, at least: refuse git symbolic-ref and pack-refs on refs/remotes, and make every write under .git/ (refs/, packed-refs, HEAD, worktrees/) a tamper-kind denial, like .git/config. Add tests for both routes above."
+    }
+  ],
+  "conditions_still_open": [
+    "CI check wired as a required status in branch protection on dev of each repository, before any install (until then a hook bypass reaches dev unchecked).",
+    "Install by pull.",
+    "Rotation of cl-6.abp's key through IaC."
+  ],
+  "what_would_pass": "A head that closes B1 by either route above, with tests, and CI required on dev. Then I review that exact head."
+}
