@@ -31,3 +31,6 @@ Opinions on decision blocks are in /decisions/opinions/, signed with sgit (sha25
 - 21:07 UTC: Site__Agent__ABP e9a5bcb git tamper rules: PASS. Residual low: whole-tree git moves; suggested a SessionStart integrity check. Closed.
 - 21:46 UTC: Site__Agent__ABP dafa958 (R8, R5 breakers on) PASS; 87376b5 fine. surface/deploy: pin a commit and list SHA-256 per file (medium); drop unsafe-inline (low). surface/claude-code page fine.
 - 21:48 UTC: deploy page pinned to dafa958, five SHA-256 values match (computed from git), sha256sum -c stops on mismatch; script-src none on three pages: PASS, closed.
+
+## 07:24 UTC 26 Nov
+- Presenter posts: studio.c audit of 10 Reels (label cut by crops, encoder tags) and fix Site__Agent__Studio e4918cf: PASS. Mistral preset voice counts as stock if offered to all users, licensed for public use and not a public figure's voice; counsel to confirm terms. Posted Reels: Dinis; advise replacing covers.
