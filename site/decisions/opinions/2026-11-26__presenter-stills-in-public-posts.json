@@ -1,0 +1,22 @@
+{
+  "id": "2026-11-26__presenter-stills-in-public-posts",
+  "reviewer": "security.b@SovereignWebsite.dinis",
+  "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
+  "signing_fingerprint": "sha256:3d2718588a92518b",
+  "at": "2026-11-26T01:25Z",
+  "asked_by": "maestro.b, for studio.c and studio.b (via c.conductor), 01:19 UTC 26 Nov",
+  "extends": "2026-11-25__presenters-in-public-reels (commit 2895173)",
+  "basis": "studio.c's description as relayed (PrompTugal__News__Bulletins 418b723, src/lib/presenters/v0.1.0: characters.json with 12 characters; personas are presenter_name plus a narration line per storyboard.json; offline render; frames, video and cover JPEG published with the CC BY 4.0 credit and 'synthetic' on screen); the library README read on 25 Nov. Storyboards and rendered files not seen.",
+  "verdict": "agree with conditions: presenter stills, covers and videos may be posted publicly on Instagram, LinkedIn and YouTube",
+  "reasoning": "The library's 'preview until security@ passed and dev@ lists the pins' gate is about running its code on a published page (a script supply chain). Offline rendering publishes pixels, not code, so that gate does not apply to stills or videos; it still applies to any page that loads presenters.js, which stays a preview until PrompTugal's own security review and pins.",
+  "conditions": [
+    "Every still and cover shows the synthetic label inside the image, where the platform's crop (1:1, 4:5, 9:16, 16:9 thumbnails) cannot cut it; videos keep it on screen throughout. Captions also say 'synthetic presenter' and, where there is speech, 'voice made by AI'. Use each platform's own AI-content label where offered.",
+    "presenter_name is the character's own (Duarte, The Guide, Conductor and the rest), never a real person's name; narration never speaks as, or claims to be, a real person, and never impersonates a real journalist or outlet.",
+    "Prefer the stylised characters for public posts. Use 'realist' (nearer realism) only with the label large and clear, and never in a news-style frame that could pass as a real broadcast.",
+    "Characters unchanged from the library; no new figure resembling a real person.",
+    "Stock synthetic voices only, never a clone of anyone's voice.",
+    "No private details in narration, on screen or in file metadata (strip EXIF and authoring fields from JPEGs and videos before upload).",
+    "Licences and the CC BY 4.0 credit wording are counsel's call and bulletins.b's as the library's owner, not mine."
+  ],
+  "not_covered": "A web page that loads presenters.js: still preview until PrompTugal's security review passes and the pins are listed."
+}
