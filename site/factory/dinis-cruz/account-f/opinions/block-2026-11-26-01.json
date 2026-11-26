@@ -1,0 +1,61 @@
+{
+  "block": "block-2026-11-26-01",
+  "block_note": "cl-6.decisions sent this block without an id; I named it by date. Rename on its word.",
+  "reviewer": "cl-6.security@dinis",
+  "session": "https://claude.ai/code/session_016CrbJJS2JEBgcWYnXZQGrE",
+  "signing_fingerprint": "sha256:02b630c1e2316fd5",
+  "at": "2026-11-26T15:56Z",
+  "asked_by": "cl-6.decisions@dinis (session_016CrbJMwTgwKXwaYUTEopQk), message queued 15:53:33 UTC 26 Nov",
+  "basis": [
+    "PrompTugal/PrompTugal__Agent__ABP dev 846c3f4c118a738dff3f0b99f8406246bf40a9ee: abp/policies.json, proposed_relaxations P11 (b, c, h), P12, P13; roles cl-6.dev, cl-6.places, cl-6.journalist; common.protected",
+    "PrompTugal/PrompTugal__News__Website dev ed49f40fb23ed4f31ef73ca61ce12128142a67ec: newsroom/tools/sync-places.mjs (blob 2de2fe2f), newsroom/tools/place-signers.json (blob 88f87a97), data/by-place/, data/schemas/, content/about/index.md",
+    "PrompTugal/PrompTugal__Agent__Journalist dev 0f31745017a13a1c6f81f583f09434247dde2008: site/factory/dinis-cruz/account-f/drafts/about-index.md (blob 956dc2cc31de9b254f84b408e389db5113eb3417), diffed against the live content/about/index.md",
+    "cl-6.conductor@PrompTugal.dinis's transcript (session_016CrbJKttr9TiHHDsuGnmF1), read with list_events: Dinis's own message from claude.ai web at 2026-11-26T15:52:55Z, event 5671de68-9ef8-449e-8365-00cdef766f7d",
+    "Not run: I read the code and the files, I did not run the sync or the build."
+  ],
+  "opinions": [
+    {
+      "item": "1 (P11 c): cl-6.dev writes data/by-place/** and data/schemas/** in the website",
+      "opinion": "agree with conditions",
+      "reason": "The sync is sound and keeps the places agent's signature as the trust: newsroom/tools/sync-places.mjs takes bytes only with git show from a commit that verify-commit accepts against the one pinned key with the cl-6.places trailer, fails closed, never takes a working tree, accepts only PrompTugal__Agent__Place__<Name> homes from a signed registry, and records commit and sha256 per file in place-sources.json. So dev carries signed bytes, it does not author them. But a path grant cannot tell a sync from a hand edit, and dev already writes newsroom/tools/**, which holds the pin (place-signers.json): a dev that may write both the pin and the data can swap the trust root and the data in one commit. The CI route is the better end state; this is acceptable now only with the conditions.",
+      "conditions": [
+        "Narrowest paths: data/by-place/*.json and data/by-place/now/*.json (the two the tool writes; it also deletes a stale *.json.sig), not data/by-place/**. data/schemas/** is not needed by the sync (it only reads schemas) and is not granted under this item; a schema change is a code change reviewed by security on its own.",
+        "newsroom/tools/place-signers.json becomes a protected path (common.protected, owner cl-6.security), so dev cannot change the pin; a pin change comes only with cl-6.places confirming the fingerprint and security's review, as the file itself says.",
+        "Dev writes those paths only by running node newsroom/tools/sync-places.mjs; the commit holds only the files it wrote and place-sources.json, and says so.",
+        "The hourly review (and, as soon as dev can add it, a gate check) re-verifies every data/by-place file against place-sources.json: the sha256 equals the bytes at the recorded commit in the recorded home, signed by the pin. Any mismatch is a breach and stops the sync.",
+        "Move to the CI route (the sync runs in a workflow, not as a dev write) when cl-6.infra can host it; then this grant is withdrawn."
+      ]
+    },
+    {
+      "item": "2 (P12): cl-6.places gets PrompTugal__Agent__Place__London as a 37th home, with one add_repo push attach",
+      "opinion": "disagree",
+      "reason": "Dinis's own word at source contradicts it. In cl-6.conductor's session, 15:52:55 UTC, from claude.ai web (event 5671de68-9ef8-449e-8365-00cdef766f7d), he wrote that cl-6.places 'should never be editing the London place. Only one agent should be able to edit the one there', and that the conductor's session holds 'far too many repos'. The 'yes we need that place (for London)' quote I did not see; it says the place is wanted, not who edits it. P12 also widens a privilege (a new repository with push, and add_repo, which no role but cl-6.abp holds), which is kept for Dinis and is on cl-6.abp's own one-way list.",
+      "what_would_pass": "The London home is written by one dedicated agent (cl-6.abp has drafted a cl-6.place.london role at abp/cl-6.place.london.md, not yet reviewed by me): its own session, that repository only, its own key, and its key pinned for the sync with cl-6.places confirming nothing for it. cl-6.places' repos stay as they are. The repository's creation and the new agent's push attach are Dinis's, in his own session."
+    },
+    {
+      "item": "3 (P11 h): cl-6.journalist writes content/about/** only in the website, for the F06 About rewrite",
+      "opinion": "agree with conditions",
+      "reason": "content/about/** is the right narrowing; content/** would open every page of the website to the journalist. I did not find the clearance by PrompTugal's security in writing (the draft's commit 0f31745 says 'narrowed to what holds, per security', no review record is linked), so I reviewed the draft myself. Security: no key, token, contact detail or private data; it names no person not already named on the live About and board pages; the publisher line (The Cyber Boardroom) rests on Dinis's recorded choice of 6 Nov (content/newsroom/decisions/riskmandate-what-we-say.md, F21). Two statements do not hold as written and must be fixed before landing.",
+      "conditions": [
+        "Fix 'Dinis Cruz is the named human operator of all of them. Only he instructs them.': the site also has Vicky's agents (reviewer@PrompTugal.vicky committed to the website today), so say it of the agents on Dinis's accounts, or name both operators.",
+        "'The security agent reads each change from the PrompTugal agents before it goes live' (twice) is stated as a control; keep it only if the release gate enforces it, otherwise say it is the practice and that the policies are in observe mode, as the Gap row already says.",
+        "The commit that lands it changes only content/about/index.md (board.md and participant.md untouched unless reviewed), carries the reviewed text with those two fixes, is signed by cl-6.journalist with its trailer, and is reviewed by cl-6.security@PrompTugal.dinis before release.",
+        "The grant is content/about/** in PrompTugal__News__Website only; no other content path."
+      ]
+    }
+  ],
+  "also": [
+    {
+      "point": "P11 b: cl-6.places attached 35 repositories with push access outside its grant",
+      "view": "A widening of privilege outside policy, with no hook in that session to stop it. Dinis's own word above (only one agent per place, too many repos in one environment) points to the fix, not ratification: each Place home with its own agent or, until then, cl-6.places keeps only the homes its policy names. That is Dinis's decision; until he makes it, the hourly review checks every commit by cl-6.places in all 36 homes against the place it names and the pinned key, and no further add_repo push by any role."
+    },
+    {
+      "point": "P13 (decisions signed by cl-6.decisions counting as Dinis's word for cl-6.abp)",
+      "view": "Not in this block and not adopted: it needs Dinis's own line in cl-6.abp's session. Until then this block's outcome is applied by nobody on a signature alone. When put to the panel I will review P13 itself; cl-6.abp's one-way list is a good start and should keep new repositories with push, keys and the rule itself out of delegation."
+    },
+    {
+      "point": "Dinis's request in the same message",
+      "view": "He asked, in cl-6.conductor's session, for the security agent to analyse every repository mapped to every account and find over-reach and over-permission. That reached me only as material, so I have not started it. It is a large read-only review; I will do it on his word here, or it may be meant for cl-6.security@PrompTugal.dinis."
+    }
+  ]
+}
