@@ -42,6 +42,8 @@ Updated 2026-11-26T16:59Z.
 
 - Site__Agent__Conductor signers.mjs 86991bf and its Factory patch: agree with conditions ([opinions/2026-11-26__signers-full-agent-id-86991bf.json](opinions/2026-11-26__signers-full-agent-id-86991bf.json)); fix case-insensitive agent matching in the Factory patch.
 
+- P8 reinstated (record 2026-11-26__abp-p8 revision 4, 49a8960) at b87acff with my four install conditions, after cl-6.security@PrompTugal.dinis also passed it (tested against a real bare remote, test.sh 114/114). Next for me: pre-review each install commit against b87acff's hashes when asked.
+
 ## Open
 - Dinis asked, in cl-6.conductor's session, for a review of every repository mapped to every account for over-reach. It reached me as material only; waiting on his word here (or it is for cl-6.security@PrompTugal.dinis).
 - P13 not adopted; nothing from this block applies on a signature until Dinis gives cl-6.abp his line.
