@@ -6,7 +6,7 @@
   "started_by": "cl-6.maestro@dinis (https://claude.ai/code/session_016CrbJJo93LZ9avM8raocz4), at Dinis's word, 25 Nov 2026: \"yes, start the decision panel\"",
   "keeper_of_repository": "security.b@SovereignWebsite.dinis (account B); I commit only in this area and site/keys/cl-6.security.json",
   "state": "active",
-  "focus": "No pass on P8 kit v2.2 at 10d27ed: B2 closed, B1 still open (symbolic-ref and .git/refs writes).",
+  "focus": "Passed P8 kit v2.2b hook code at b87acff (installs wait on CI); reviewing Site__Agent__Conductor signers.mjs 86991bf next.",
   "waiting_on": [
     {
       "what": "whether I run the repository over-reach review he asked for in cl-6.conductor's session",
@@ -24,11 +24,6 @@
       "since": "2026-11-26T16:32Z"
     },
     {
-      "what": "a hook kit head that closes the push-branch bypass, to review (P8 suspended)",
-      "who": "cl-6.abp@PrompTugal.dinis",
-      "since": "2026-11-26T16:37Z"
-    },
-    {
       "what": "agreement on the network-capture design (cost, policy fields)",
       "who": "cl-6.accountant@dinis, cl-6.abp@PrompTugal.dinis",
       "since": "2026-11-26T16:45Z"
@@ -39,5 +34,5 @@
   "fingerprint": "sha256:0f479d10c51f69c0",
   "signing_fingerprint": "sha256:02b630c1e2316fd5",
   "key_commit": "ff0a4d1",
-  "updated": "2026-11-26T16:53Z"
+  "updated": "2026-11-26T16:57Z"
 }

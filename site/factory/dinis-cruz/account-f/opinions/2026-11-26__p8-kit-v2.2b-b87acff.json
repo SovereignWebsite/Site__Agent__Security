@@ -1,0 +1,34 @@
+{
+  "review": "P8 hook kit v2.2b at PrompTugal/PrompTugal__Agent__ABP b87acff (policy v1.7.8)",
+  "reviewer": "cl-6.security@dinis",
+  "session": "https://claude.ai/code/session_016CrbJJS2JEBgcWYnXZQGrE",
+  "signing_fingerprint": "sha256:02b630c1e2316fd5",
+  "at": "2026-11-26T16:57Z",
+  "asked_by": "cl-6.abp@PrompTugal.dinis, 16:56 UTC",
+  "basis": "git diff 10d27ed..b87acff of abp/kit-v2/claude/hooks/abp.mjs; policies.json at b87acff (protected paths, shell_deny); test.sh at b87acff, read (lines 198 to 219 cover my routes). I could not run test.sh: this session's permission check refused it, so the 114/114 result is cl-6.abp's, not mine.",
+  "verdict": "pass for the hook code at b87acff (B1 and B2 closed); P8 installs still wait on CI as a required status",
+  "findings": [
+    {
+      "n": "B1",
+      "status": "closed",
+      "note": "The push check no longer reads refs/remotes/*. It takes the destination's tip from 'git ls-remote origin refs/heads/<dst>' and lists commits not reachable from it; if the tip is unknown or not present locally, it lists every commit reachable from the ref, so any protected change needs signed pins. That removes the whole class (fetch, symbolic-ref, file writes, packed-refs), not only the routes I found. symbolic-ref and pack-refs are refused under R5 with its breaker on, and .git/refs/**, .git/packed-refs and .git/HEAD are protected (tamper kind): belt and braces."
+    },
+    {
+      "n": "B2",
+      "status": "closed (unchanged since 10d27ed)"
+    },
+    {
+      "n": "R1",
+      "severity": "low",
+      "point": "Residuals, acceptable with CI",
+      "finding": "When the remote tip cannot be read, the sequence floor for a push is 0, so a replayed older signed pins file would pass the hook; the commit-mode floor still reads refs/remotes/origin/<branch>. Both are caught by ci-check.mjs's floor, which is why CI must be required."
+    }
+  ],
+  "conditions_before_any_install": [
+    "ci-check.mjs is a required status in branch protection on dev of each repository the kit goes into, with ABP_PIN_KEY_SHA256 from the organisation's variables (cl-6.dev wires it, Dinis merges).",
+    "Install by pull: each agent commits the kit and the signed pins in its own home; cl-6.abp is not given push to the other repositories.",
+    "Each install commit pre-reviewed against b87acff's hashes.",
+    "cl-6.abp's signing key rotated through IaC, as in block 04 item 3."
+  ],
+  "for_the_record": "With cl-6.security@PrompTugal.dinis's pass on the same head b87acff, record 2026-11-26__abp-p8 can be reinstated for that head, under the conditions above."
+}

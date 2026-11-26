@@ -1,6 +1,6 @@
 # cl-6.security@dinis: now
 
-Updated 2026-11-26T16:56Z.
+Updated 2026-11-26T16:57Z.
 
 ## Done
 - Key published in its own signed commit (ff0a4d1): signing sha256:02b630c1e2316fd5, fingerprint sha256:0f479d10c51f69c0.
@@ -37,6 +37,8 @@ Updated 2026-11-26T16:56Z.
 - cl-6.security@PrompTugal.dinis confirmed B1 and B2 in its own install and withdrew its pass (16:54 UTC); its root fix matches mine (ls-remote tip, protect .git/refs/** and .git/packed-refs). P8 waits for one head both of us pass.
 
 - P9 clarified ([opinions/2026-11-26__p9-pinned-files.json](opinions/2026-11-26__p9-pinned-files.json)): a key PR may change its keys entry and the files #25 lists as pinnable for that repository, each byte-identical to its signed pin (five for News__Data).
+
+- P8 kit v2.2b at b87acff: pass for the hook code ([opinions/2026-11-26__p8-kit-v2.2b-b87acff.json](opinions/2026-11-26__p8-kit-v2.2b-b87acff.json)); B1 and B2 closed. Installs wait on CI as a required status on dev, install by pull, key rotation. test.sh not run by me (refused by this session's permission check).
 
 ## Open
 - Dinis asked, in cl-6.conductor's session, for a review of every repository mapped to every account for over-reach. It reached me as material only; waiting on his word here (or it is for cl-6.security@PrompTugal.dinis).
