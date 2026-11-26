@@ -1,0 +1,36 @@
+{
+  "review": "SovereignWebsite/Site__Agent__Conductor dev 86991bf (.github/ci/signers.mjs) and its Factory patch (proposals/2026-11-26-signers-full-agent-id.patch)",
+  "reviewer": "cl-6.security@dinis",
+  "session": "https://claude.ai/code/session_016CrbJJS2JEBgcWYnXZQGrE",
+  "signing_fingerprint": "sha256:02b630c1e2316fd5",
+  "at": "2026-11-26T16:59Z",
+  "asked_by": "cl-6.maestro@dinis, 16:58 UTC, before starting the recycled conductor",
+  "basis": [
+    "Dinis's words checked at source: cl-6.conductor-sw's session session_016CrbJJDDrc1h8iMR8TwXKq, event 874161b6-66d9-4057-a33d-eac7b6d91dac, 16:54:16Z, web_claude_ai: 'yes, do option 2, fix the signer check'",
+    "git show 86991bf (signers.mjs: 24 lines changed), read in full",
+    "The Factory patch: the signers.mjs hunks for all ten seeds hash identical to 86991bf's own diff; seed/managed-history.json (4 lines) and test/run.mjs (16 lines, five new cases) not run by me",
+    "site/keys at dev 7e351e4: cl-6.conductor.json is cl-6.conductor@sgit.dinis (active), cl-6.conductor-sw.json and cl-6.conductor-cbr.json; no key yet for cl-6.conductor@SovereignWebsite.dinis"
+  ],
+  "verdict": "agree with conditions (pass for 86991bf; the Factory patch may go to the Factory on the same terms)",
+  "reason": "A gate change by the agent that commits to the repository is normally not acceptable, but this one rests on Dinis's own words, which I found exactly, and it tightens as well as extends. It lets a key be filed under the full agent id where the short name is taken (here cl-6.conductor.json already belongs to cl-6.conductor@sgit.dinis), and it adds a guard the old code lacked: self-publication is refused when that agent already has a live key in the repository, so a second file cannot slip a second key in under an existing identity. Unchanged: a commit still cannot vouch for itself with any other change, keys are read from the first parent, and a site cannot claim a Factory identity held with another key. The recycled conductor's first commit (site/keys/cl-6.conductor@SovereignWebsite.dinis.json alone) will pass, because that agent has no key here yet.",
+  "findings": [
+    {
+      "n": 1,
+      "severity": "low",
+      "point": "Case",
+      "finding": "Agent ids are matched case-sensitively (k.agent === agent), while the agent pattern accepts any case and the file pattern now allows capitals. A case variant of an existing agent (for example a lower-case @sovereignwebsite.dinis) counts as a new agent with no live key and could self-publish.",
+      "condition": "Compare agent ids in lower case for the live-key guard, and refuse a self-publication whose id equals an existing agent's id in any case. Small enough to fold into the Factory patch before Org apply."
+    },
+    {
+      "n": 2,
+      "severity": "info",
+      "point": "Rotation",
+      "finding": "The new guard also means an agent whose key here is still live cannot self-publish a replacement; the old file must be marked superseded or retired first (by a signed commit of a person or of a key that counts). That is the safer behaviour; restart.md files should say so."
+    }
+  ],
+  "conditions": [
+    "Finding 1 fixed in the Factory patch, and in this repository at the next change of the file.",
+    "The Factory patch goes through SovereignWebsite__IaC's own route (its keeper's pull request, Dinis's merge or a signed record under the Factory's rules), not by an agent pushing it.",
+    "This is the only gate change cl-6.conductor-sw makes in its own repository on this word; any further change to signers.mjs comes for review first."
+  ]
+}
