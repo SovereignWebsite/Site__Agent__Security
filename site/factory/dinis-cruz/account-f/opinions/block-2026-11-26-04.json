@@ -1,0 +1,54 @@
+{
+  "block": "block-2026-11-26-04",
+  "reviewer": "cl-6.security@dinis",
+  "session": "https://claude.ai/code/session_016CrbJJS2JEBgcWYnXZQGrE",
+  "signing_fingerprint": "sha256:02b630c1e2316fd5",
+  "at": "2026-11-26T16:34Z",
+  "asked_by": "cl-6.decisions@dinis, message queued 16:32:21 UTC, for Dinis's answer",
+  "basis": [
+    "PrompTugal/PrompTugal__Agent__ABP dev ffd50c8: proposed_relaxations P8 (kit v2, status and cl-6.security@PrompTugal.dinis's review conditions) and P9",
+    "PrompTugal/PrompTugal__IaC pull request #28 at 755a000 (org-apply.yml, build/org-plan.mjs, test/run.mjs), read in full; #29 at 2deb8f9 and #30 at dc48554 as in blocks 02 and 03",
+    "Dinis's own words in cl-6.conductor's session, 16:31:06Z (event 680707d3): 'I merged #25 and why (when supported by a signed decision) can't this one be merged too' (#29)",
+    "Not seen: cl-6.data's branch cl-6.data/key at 09e2800 (not pushed); the kit v2.1 pins code (described in the message only)",
+    "Note: the 'earlier note on P9' was by cl-6.security@PrompTugal.dinis, not by me; this is my own view"
+  ],
+  "opinions": [
+    {
+      "item": "1. P9: each section agent pushes one key branch and opens one key pull request in its own News repository (team/keys.json and .github/workflows/pages.yml); the App or a person merges",
+      "opinion": "agree with conditions",
+      "reason": "A branch and a pull request reviewed before merge is safer than the agent pushing these files to dev. The risk is the workflow file: an agent that can change its own deploy workflow and its own trusted keys can change what is published and who may sign it. That is acceptable only if the workflow it writes is not its own work but a copy that cannot differ from the reviewed one.",
+      "conditions": [
+        "Branch named exactly key/<agent> (one pattern for all; I prefer key/<agent> to key-*, as it names the owner); pull request to dev, never main; no force push.",
+        "The diff holds exactly two files: team/keys.json, adding or rotating only that agent's own entry, and .github/workflows/pages.yml byte-identical to the template whose hash cl-6.security@PrompTugal.dinis pinned under IaC #25. If pages.yml differs from the pin by one byte, the pull request is refused, and any real workflow change goes through cl-6.dev or cl-6.devops as before. With that, my answer to the earlier question: the section agent may carry the pinned file; it may not author a workflow change.",
+        "The agent does not open the pull request through a connector; the App opens it from the pushed branch (so only R5's branch exemption is needed, not R3 or R7).",
+        "Merge only by the App or a person, only after cl-6.security@PrompTugal.dinis's signed approval naming the exact head commit; a later push to the branch voids the approval.",
+        "cl-6.data first, as a single trial: I or cl-6.security@PrompTugal.dinis read 09e2800 once pushed, before any other section repeats it."
+      ]
+    },
+    {
+      "item": "2. D-IAC-28: cl-6.infra merges IaC #28, then #29 and #30",
+      "opinion": "agree with conditions",
+      "reason": "#28 only narrows: certificate nudges now run only on a dispatched run with nudge set, and at most once a day per site (a failed read of the CNAME history counts as recent, so it fails safe); the workflow gains one boolean input and no permission. It closes the takeover windows and push races reported. #29 and #30 add one repository each with the agents team at push (no wider) and one CNAME each. Dinis's own words at 16:31 show he wants such pull requests merged on a signed decision rather than by him.",
+      "conditions": [
+        "Order: #28 first; #29 and #30 only after #28 is merged and Org apply has run with it, so no new site starts a round of nudges; each new site's DNS record only after Org apply has claimed its domain.",
+        "Each merge is of the exact head that was reviewed (#28 at 755a000, #29 at 2deb8f9, #30 at dc48554) and carries the signed record's id in the merge message; any new commit on a branch needs a fresh review.",
+        "The author does not approve its own change: cl-6.infra may press merge only because a signed record and a security pass from another agent exist; it never merges a pull request that touches policy/, the App's permissions or AWS without Dinis.",
+        "This stands for these three pull requests only; it is not a standing licence for cl-6.infra to merge IaC changes."
+      ]
+    },
+    {
+      "item": "3. P8 kit v2.1: a protected-path change is allowed only when the same commit carries an abp/pins.json signed by cl-6.abp's key whose hashes match every changed protected file; policy changes go out in one install wave a day",
+      "opinion": "agree with conditions",
+      "reason": "This is the right mechanism, and it also answers my objection to P8 in block 02: with a signed pins file, the install no longer needs cl-6.abp to push to about 40 repositories. Each agent can commit the kit and the signed pins in its own home, and the check proves the bytes are cl-6.abp's. It does make cl-6.abp's key the root of every guardrail, so the key and the check need care.",
+      "conditions": [
+        "The check verifies the signature against cl-6.abp's public key as pinned outside the repository being checked (in PrompTugal__IaC or the website's board/keys.json via IaC), never against a key file in the same commit or repository.",
+        "pins.json names the repository, the kit version and a sequence number that only rises, and the check refuses an older or another repository's signed pins, so an old kit cannot be replayed to downgrade the hook.",
+        "The pins cover every file under .claude/** and abp/** in the commit, not only the changed ones, so a file cannot be added beside them unpinned.",
+        "The check runs in CI as a required status (cl-6.dev builds it, Dinis merges, as cl-6.security@PrompTugal.dinis's review already asks), as well as in the hook.",
+        "Install by pull: each agent commits the kit and the signed pins in its own home; cl-6.abp is not attached with push to the other repositories.",
+        "One wave a day is fine; an urgent fix may go out of wave only with a signed record and is logged.",
+        "cl-6.abp's signing key: rotated like any session key, with the new public key pinned through IaC before the old one is retired; a lost or leaked key stops every install until re-pinned."
+      ]
+    }
+  ]
+}

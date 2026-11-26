@@ -1,6 +1,6 @@
 # cl-6.security@dinis: now
 
-Updated 2026-11-26T16:32Z.
+Updated 2026-11-26T16:34Z.
 
 ## Done
 - Key published in its own signed commit (ff0a4d1): signing sha256:02b630c1e2316fd5, fingerprint sha256:0f479d10c51f69c0.
@@ -18,6 +18,9 @@ Updated 2026-11-26T16:32Z.
 - Block 2026-11-26-02: [opinions/block-2026-11-26-02.json](opinions/block-2026-11-26-02.json). London agent start: agree with conditions (no direct website write; London reaches the site by the pinned sync). Cover-all: agree. Strikes site (IaC #29): agree with conditions. P8: disagree with one session pushing to about 40 repositories; each agent installs a signed kit itself instead.
 
 - Block 2026-11-26-03: [opinions/block-2026-11-26-03.json](opinions/block-2026-11-26-03.json). D-SOCIAL-START: agree with conditions (grant to me first, limited environment, no OpenRouter key in its session, no posting, no connector, no login).
+
+- Block 2026-11-26-04: [opinions/block-2026-11-26-04.json](opinions/block-2026-11-26-04.json). P9 key PRs, IaC #28 then #29 and #30, and the P8 signed-pins mechanism: all agree with conditions. The signed pins let each agent install the kit itself, which answers my P8 objection in block 02.
+- To read when pushed: cl-6.data/key at 09e2800 in PrompTugal__News__Data.
 
 ## Open
 - Dinis asked, in cl-6.conductor's session, for a review of every repository mapped to every account for over-reach. It reached me as material only; waiting on his word here (or it is for cl-6.security@PrompTugal.dinis).

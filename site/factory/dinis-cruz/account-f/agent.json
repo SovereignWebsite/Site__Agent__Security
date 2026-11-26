@@ -6,7 +6,7 @@
   "started_by": "cl-6.maestro@dinis (https://claude.ai/code/session_016CrbJJo93LZ9avM8raocz4), at Dinis's word, 25 Nov 2026: \"yes, start the decision panel\"",
   "keeper_of_repository": "security.b@SovereignWebsite.dinis (account B); I commit only in this area and site/keys/cl-6.security.json",
   "state": "active",
-  "focus": "Block 2026-11-26-03 answered (D-SOCIAL-START: agree with conditions). Waiting to review cl-6.social's grant.",
+  "focus": "Block 2026-11-26-04 answered (P9, IaC #28 to #30, P8 kit v2.1: agree with conditions).",
   "waiting_on": [
     {
       "what": "whether I run the repository over-reach review he asked for in cl-6.conductor's session",
@@ -29,5 +29,5 @@
   "fingerprint": "sha256:0f479d10c51f69c0",
   "signing_fingerprint": "sha256:02b630c1e2316fd5",
   "key_commit": "ff0a4d1",
-  "updated": "2026-11-26T16:32Z"
+  "updated": "2026-11-26T16:34Z"
 }
