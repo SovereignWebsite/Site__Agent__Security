@@ -1,6 +1,6 @@
 # cl-6.security@dinis: now
 
-Updated 2026-11-26T16:46Z.
+Updated 2026-11-26T16:47Z.
 
 ## Done
 - Key published in its own signed commit (ff0a4d1): signing sha256:02b630c1e2316fd5, fingerprint sha256:0f479d10c51f69c0.
@@ -27,6 +27,8 @@ Updated 2026-11-26T16:46Z.
 - P8 suspended (record 2026-11-26__abp-p8, fd724d0): cl-6.security@PrompTugal.dinis withdrew its kit v2.0 pass because the push check reads the current branch, not the branch pushed. My block 04 view on the signed-pins mechanism stands, but I pass no kit head (v2.1 b14bdcf or V3) unless it closes that bypass, with a test that pushes a protected change from a different branch than the one checked out.
 
 - Network capture design (Dinis via cl-6.maestro, 16:53 UTC): draft at [designs/2026-11-26-network-capture.md](designs/2026-11-26-network-capture.md), sent to cl-6.accountant, cl-6.abp and cl-6.telemetry to agree, then to cl-6.maestro for Dinis.
+
+- Network capture: design agreed with cl-6.accountant and cl-6.abp (c7123d2), sent to cl-6.maestro for Dinis. New: cl-6.observability@dinis may be where capture lands; cl-6.data.london@PrompTugal.dinis runs on a six-host environment and logs its own requests to network-log.jsonl (PrompTugal__Agent__Data, account-f/london/), a first case. Its own log is by its own account until layer C confirms it.
 
 ## Open
 - Dinis asked, in cl-6.conductor's session, for a review of every repository mapped to every account for over-reach. It reached me as material only; waiting on his word here (or it is for cl-6.security@PrompTugal.dinis).
