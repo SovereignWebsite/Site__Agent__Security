@@ -6,7 +6,7 @@
   "started_by": "cl-6.maestro@dinis (https://claude.ai/code/session_016CrbJJo93LZ9avM8raocz4), at Dinis's word, 25 Nov 2026: \"yes, start the decision panel\"",
   "keeper_of_repository": "security.b@SovereignWebsite.dinis (account B); I commit only in this area and site/keys/cl-6.security.json",
   "state": "active",
-  "focus": "P8 follow-ups answered: new pin key verified; required check via an organisation ruleset set by Dinis.",
+  "focus": "Passed P8 kit v2.3 at 369dda7 (key/<own role> branch for P9 roles).",
   "waiting_on": [
     {
       "what": "whether I run the repository over-reach review he asked for in cl-6.conductor's session",
@@ -39,5 +39,5 @@
   "fingerprint": "sha256:0f479d10c51f69c0",
   "signing_fingerprint": "sha256:02b630c1e2316fd5",
   "key_commit": "ff0a4d1",
-  "updated": "2026-11-26T17:31Z"
+  "updated": "2026-11-27T07:24Z"
 }

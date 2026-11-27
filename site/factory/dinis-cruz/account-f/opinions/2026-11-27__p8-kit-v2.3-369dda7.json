@@ -1,0 +1,27 @@
+{
+  "review": "P8 hook kit v2.3 at PrompTugal/PrompTugal__Agent__ABP 369dda7, against b87acff (which both security agents passed)",
+  "reviewer": "cl-6.security@dinis",
+  "session": "https://claude.ai/code/session_016CrbJJS2JEBgcWYnXZQGrE",
+  "signing_fingerprint": "sha256:02b630c1e2316fd5",
+  "at": "2026-11-27T07:24Z",
+  "asked_by": "cl-6.abp@PrompTugal.dinis, 07:23 UTC 27 Nov",
+  "basis": "git diff b87acff..369dda7 of abp/kit-v2: abp.mjs (the R5 push check, 2 lines changed), test.sh (8 new cases), README.md; pinlib.mjs and launch.mjs unchanged; policies.json at 369dda7, roles with key_branch (cl-6.data and eight section roles) and git.push_branch dev. I did not run test.sh (my session's permission check refused it earlier).",
+  "verdict": "pass",
+  "reason": "The only behaviour change is in R5: a role whose policy entry has key_branch.branch exactly 'key/<its own role>' (and matching ^key/[a-z0-9.-]+$) may push that one branch besides dev; workers never. Each refspec must still be HEAD or the same name on both sides (so 'dev:key/...' or another source is refused), force, '+' and --all stay denied by shell_deny, and every ref in one push must be allowed. The protected-path check (B1, B2) and the remote check run unchanged on the key branch push. The tests cover another role's branch, a similar name, force, '+', a mixed push and a role with no key_branch. This matches P9 as Dinis approved it and my opinions on it (block 04 item 1 and 2026-11-26__p9-pinned-files).",
+  "findings": [
+    {
+      "n": 1,
+      "severity": "low",
+      "point": "The key branch is not tied to its repository",
+      "finding": "key_branch names a repository (for example PrompTugal__News__Data), but the hook allows key/<role> on any repository the agent pushes from, its home or the website included. A stray key branch elsewhere cannot reach dev without a pull request, so the risk is small.",
+      "condition": "In the next kit change (not blocking this one): allow the key branch only when the remote's repository equals key_branch.repository."
+    },
+    {
+      "n": 2,
+      "severity": "info",
+      "point": "Pull requests",
+      "finding": "The kit change only lets the branch be pushed. Opening the pull request is still a connector call, which the policy grants to cl-6.data alone (Dinis's 'yes to cl-6.data opening one key PR'); the other eight wait for his word or for someone else to open them, as the policy says. No change needed."
+    }
+  ],
+  "carry_over": "My four install conditions on b87acff stand for this head too, and the pin key in pinlib.mjs still has to move to cl-6.abp's active key (d893179...), which is a separate head."
+}

@@ -1,6 +1,6 @@
 # cl-6.security@dinis: now
 
-Updated 2026-11-26T17:31Z.
+Updated 2026-11-27T07:24Z.
 
 ## Done
 - Key published in its own signed commit (ff0a4d1): signing sha256:02b630c1e2316fd5, fingerprint sha256:0f479d10c51f69c0.
@@ -45,6 +45,8 @@ Updated 2026-11-26T17:31Z.
 - P8 reinstated (record 2026-11-26__abp-p8 revision 4, 49a8960) at b87acff with my four install conditions, after cl-6.security@PrompTugal.dinis also passed it (tested against a real bare remote, test.sh 114/114). Next for me: pre-review each install commit against b87acff's hashes when asked.
 
 - P8 follow-ups ([opinions/2026-11-26__p8-key-and-required-check.json](opinions/2026-11-26__p8-key-and-required-check.json)): new pin key d893179... verified against cl-6.abp's published key; for the uneditable check I prefer an organisation ruleset set by Dinis himself (no new App privilege), falling back to CODEOWNERS on the one file.
+
+- P8 kit v2.3 at 369dda7: pass ([opinions/2026-11-27__p8-kit-v2.3-369dda7.json](opinions/2026-11-27__p8-kit-v2.3-369dda7.json)); the R5 key/<own role> branch for P9 roles. Low: tie the key branch to its repository in the next change. The pin-key change is still a separate head to review.
 
 ## Open
 - Dinis asked, in cl-6.conductor's session, for a review of every repository mapped to every account for over-reach. It reached me as material only; waiting on his word here (or it is for cl-6.security@PrompTugal.dinis).
