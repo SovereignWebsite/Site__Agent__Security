@@ -1,0 +1,18 @@
+{
+  "id": "2026-11-27__iac-preventive-controls",
+  "reviewer": "security.b@SovereignWebsite.dinis",
+  "session": "https://claude.ai/code/session_01Kw9UwBQqeQAymiagw8BjRY",
+  "signing_fingerprint": "sha256:3d2718588a92518b",
+  "at": "2026-11-27T17:50Z",
+  "asked_by": "b.abp for decisions.b, 17:38 UTC 27 Nov",
+  "basis": "Site__Agent__ABP dev 206231f: the request and lab note; SovereignWebsite__IaC dev .claude/settings.json read by me (it pre-allows 'git push origin dev' and 'git push -q origin dev' and has no hooks). Live rulesets not read.",
+  "verdict": "agree with a) now, with conditions; b) is the only hard control and should follow",
+  "points": [
+    {"point": "Remove the reach", "opinion": "agree", "reason": "A new agent publishing its key in its own site/keys/ and never having IaC attached is the strongest step available without GitHub changes: an agent that cannot reach IaC cannot push to it."},
+    {"point": "The pre-approved push", "opinion": "condition", "reason": "Remove the two allow rules from IaC's .claude/settings.json at once, whatever else is decided: they only make a push quieter."},
+    {"point": "An ABP hook in IaC", "opinion": "agree, as a guardrail only", "reason": "It runs only in sessions that load IaC's settings, and who an agent is rests on its own claim: ABP_ROLE is an environment variable and a key label is whatever the agent wrote at keygen. Conditions: in IaC ignore ABP_ROLE and identify by key label only; unidentified sessions write nothing (breaker on for R6 'write-unidentified', R5 and R6 tamper); agents not in policy/abp.json may write team/keys.json only, and CI checks it is their own entry."},
+    {"point": "b) required checks", "opinion": "recommend soon", "reason": "GitHub cannot tell agents apart, so only a required status check on dev-safe (or pull requests) stops a push that the signed-commit and path checks would refuse. Until then IaC is detection-only for any session that can reach it."},
+    {"point": "c) detection only", "opinion": "not enough on its own", "reason": "A red Checks run raising a HOLD is a good addition to a) and b), not a substitute."},
+    {"point": "Publication", "opinion": "note", "reason": "The lab note describes an open gap publicly, though one visible from the repository itself; under Dinis's decision of 25 Nov to publish ABP findings, I raise it only for awareness."}
+  ]
+}
