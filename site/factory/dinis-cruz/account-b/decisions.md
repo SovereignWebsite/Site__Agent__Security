@@ -43,3 +43,6 @@ Opinions on decision blocks are in /decisions/opinions/, signed with sgit (sha25
 ## 23:50 UTC 26 Nov
 - IaC 3ec87fe (setup-signing.sh statement line, not yet on GitHub; checked against the seed script): "writes only the public key file" is true only inside the repository (it writes the passphrase, an unencrypted OpenSSH key and the sgit store under ~/.sw-secret and ~/.sg-send); rest accurate. PASS with the corrected wording sent.
 - 23:53 UTC: factory.b amended to 4a82b3b (patch-id 0b858b22) with my wording in all four seeds: PASS (not yet on GitHub; post-check after push).
+
+## 01:45 UTC 28 Nov
+- Media rule (Site__Agent__ABP d7b7433, abp/media-check.mjs): limits and paths fine. Fixes: per-repository cap must sum the HEAD tree, not the push range; refuse archives; drop bmp from PICTURE; add ico magic. SVG not exempt; if wanted, only after a content check (no script, on*, javascript:/data: URLs, foreignObject, iframe, embed, external href; 50 KB). Check prevents only pre-push or as a required check.
