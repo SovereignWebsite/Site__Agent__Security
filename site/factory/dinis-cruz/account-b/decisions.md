@@ -46,3 +46,4 @@ Opinions on decision blocks are in /decisions/opinions/, signed with sgit (sha25
 
 ## 01:45 UTC 28 Nov
 - Media rule (Site__Agent__ABP d7b7433, abp/media-check.mjs): limits and paths fine. Fixes: per-repository cap must sum the HEAD tree, not the push range; refuse archives; drop bmp from PICTURE; add ico magic. SVG not exempt; if wanted, only after a content check (no script, on*, javascript:/data: URLs, foreignObject, iframe, embed, external href; 50 KB). Check prevents only pre-push or as a required check.
+- 01:48 UTC: media-check round 2 (3858a53): PASS; remaining SVG gap: numeric character references, <style> url()/@import, <a>, xml:base to be refused.
